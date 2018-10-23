@@ -35,6 +35,10 @@ header {
     grid-area: meme;
 }
 
+canvas {
+    margin: 30px;
+}
+
 .tools-container {
     grid-area: tools;
 }

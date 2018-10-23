@@ -36,7 +36,7 @@ function createMeme(id) {
 function createLine(val, size, x, y, color, align) {
     var line = {
         line: val,
-        size: 30,
+        size: size,
         x: x,
         y: y,
         color: color, 

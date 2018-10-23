@@ -24,7 +24,7 @@
         </div>
         <div class="meme-container" style="display:none">
             <a href="#" onclick="returnToGallery(event)">Back to gallery</a>
-            <canvas id="canvas">
+            <canvas id="canvas" onclick="onClickCanvas(event)">
                 Canvas
             </canvas>
         </div>
@@ -32,7 +32,11 @@
             Tools
             <div>
                 <label>
-                    <input type="text" placeholder="Add Line" onchange="onEnterText(this.value)"/>
+                    <input type="text" placeholder="Add Line" onchange="onEnterText(this.value)" />
+                </label>
+                <label>
+                    font color
+                    <input type="color" onchange="onChangeTextColor(this.value)">
                 </label>
             </div>
         </div>

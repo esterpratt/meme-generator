@@ -14,8 +14,6 @@ function init() {
     gCanvas.width = window.innerWidth / 2;
     gCanvas.height = window.innerHeight / 2;
 
-    gOffset = getCanvasOffset();
-
     renderGallery()
     // createMeme();
 }
@@ -26,8 +24,10 @@ function getCanvasOffset() {
 
 function onEnterText(txt) {
     // TODO: get the correct x and y
-    
-    var line = createLine(txt, 20, 0, 5, gCtx.fillStyle, 'left');
+    var size = 20;
+    var x = 0;
+    var y = size;
+    var line = createLine(txt, size, x, y, gCtx.fillStyle, 'left');
     renderMeme();
 }
 
@@ -57,8 +57,15 @@ function onChangeTextColor(color) {
 }
 
 function onClickCanvas(ev) {
-    var x = ev.clientX;
-    var y = ev.clientY;
+    var x = ev.clientX - gCanvas.offsetLeft;
+    var y = ev.clientY - gCanvas.offsetTop;
+    
+    var lineY = gMeme.txts[0].y;
+    var lineSize = gMeme.txts[0].size;
+    // check if clicked on line
+    if (y < lineY && y > lineY - lineSize) {
+        console.log('hi');
+    }
 }
 
 
@@ -84,8 +91,11 @@ function renderGallery() {
 function onSelectImg(id) {
     document.querySelector('.gallery-container').style.display = 'none';
     document.querySelector('.meme-container').style.display = 'block';
+
+    // gOffset = getCanvasOffset();
+
     createMeme(id);
-    renderMeme()
+    renderMeme();
 }
 
 function returnToGallery(event) {
