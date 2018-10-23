@@ -23,7 +23,7 @@ function createImgs() {
 }
 
 function createImg(url, keyWords) {
-    return {id: createId(), url, keyWords};
+    return { id: createId(), url, keyWords };
 }
 
 function createMeme(id) {
@@ -39,7 +39,7 @@ function createLine(val, size, x, y, color, align) {
         size: 30,
         x: x,
         y: y,
-        color: color, 
+        color: color,
         fontFamily: 'Arial',
         align: align
     }
@@ -51,10 +51,11 @@ function getMeme() {
     return gMeme;
 }
 
-function drawImgOnCanvas(image){
+function drawImgOnCanvas(image) {
+
     //TODO - CONNECT TO ANOTHER FUNC!
     // HANDLE THE HEIGHT AND WIDTH - RESPONSIVE
-    gCtx.drawImage(image, 0, 0,458,315);
+    gCtx.drawImage(image, 0, 0, 458, 315);
 }
 
 function getImageById(id) {
@@ -63,4 +64,9 @@ function getImageById(id) {
 
 function changeColor(lineIdx, color) {
     gMeme.txts[lineIdx].color = color;
+}
+
+function downloadCanvas(elLink) {
+    elLink.href = gCanvas.toDataURL();
+    elLink.download = 'meme.jpg';
 }

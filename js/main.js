@@ -26,7 +26,7 @@ function getCanvasOffset() {
 
 function onEnterText(txt) {
     // TODO: get the correct x and y
-    
+
     var line = createLine(txt, 20, 0, 5, gCtx.fillStyle, 'left');
     renderMeme();
 }
@@ -38,7 +38,7 @@ function renderMeme() {
     drawImgOnCanvas(image);
 
     meme.txts.forEach((line) => {
-        gCtx.font=`${line.size}px ${line.fontFamily}`;
+        gCtx.font = `${line.size}px ${line.fontFamily}`;
         gCtx.fillText(line.line, line.x, line.y);
     })
 }
@@ -88,7 +88,13 @@ function onSelectImg(id) {
     renderMeme()
 }
 
-function returnToGallery(event) {
+function returnToGallery(ev) {
+    ev.preventDefault();
     document.querySelector('.gallery-container').style.display = 'block';
     document.querySelector('.meme-container').style.display = 'none';
+}
+
+function onDownloadImage(el, ev) {
+    // console.log(el);
+    downloadCanvas(el);
 }
