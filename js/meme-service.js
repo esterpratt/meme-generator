@@ -56,3 +56,7 @@ function drawImgOnCanvas(image){
     // HANDLE THE HEIGHT AND WIDTH - RESPONSIVE
     gCtx.drawImage(image, 0, 0,458,315);
 }
+
+function getImageById(id) {
+    return document.querySelector(`[data-id='${id}']`);
+}

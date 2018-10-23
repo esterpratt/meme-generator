@@ -59,7 +59,7 @@ function renderGallery() {
     var strHtml = '<ul>';
     for (var i = 0; i < images.length; i++) {
         strHtml += `    <li class="gallery-img">
-                        <img src="${images[i].url}" data-id="${images[i].id}" onclick="onSelectImg(${images[i].id})">
+                        <img src="${images[i].url}" data-id="${images[i].id}" onclick="onSelectImg('${images[i].id}')">
                         </li>`
     }
     strHtml += '</ul>'
@@ -70,4 +70,5 @@ function renderGallery() {
 // TO DO - UPDATE THE MODAL - WITH THE SELECTED IMAGE  
 function onSelectImg(id) {
     createMeme(id);
+    renderMeme()
 }
