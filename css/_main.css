@@ -20,6 +20,17 @@ header {
     grid-area: gallery;
 }
 
+/* TO DO - GRID - MINMAX */
+.gallery-container ul {list-style-type: none;margin: 0 auto;width: fit-content;}
+.gallery-container ul>li {display: inline}
+.gallery-container ul li img {
+    /* max-width: 100%; */
+    max-width: 200px;
+    min-width: 200px;
+    height: 150px;
+    object-fit: cover;
+}
+
 .meme-container {
     grid-area: meme;
 }
