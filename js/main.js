@@ -16,7 +16,7 @@ function init() {
     gOffset = getCanvasOffset();
 
     renderGallery()
-    createMeme();
+    // createMeme();
 }
 
 function getCanvasOffset() {
@@ -59,7 +59,9 @@ function renderGallery() {
 // gets image  Element
 // TO DO - UPDATE THE MODAL - WITH THE SELECTED IMAGE  
 function onSelectImg(image) {
+    createMeme(image.dataset.id);
+    
     drawImgOnCanvas(image);
-    console.log('Element',image);
-    console.log('Element Modal ID',image.dataset.id);
+    // console.log('Element',image);
+    // console.log('Element Modal ID',image.dataset.id);
 }

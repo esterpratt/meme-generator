@@ -26,9 +26,9 @@ function createImg(url, keyWords) {
     return {id: createId(), url, keyWords};
 }
 
-function createMeme() {
+function createMeme(id) {
     gMeme = {
-        selectedImgId: 1,
+        selectedImgId: id,
         txts: []
     };
 }
