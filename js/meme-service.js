@@ -40,6 +40,7 @@ function createLine(val, size, x, y, color, align) {
         x: x,
         y: y,
         color: color, 
+        fontFamily: 'Arial',
         align: align
     }
 

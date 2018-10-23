@@ -9,9 +9,9 @@ function init() {
 
     gCanvas = document.querySelector('#canvas');
     gCtx = gCanvas.getContext('2d');
-    
-    gCanvas.width = window.innerWidth/2;
-    gCanvas.height = window.innerHeight/2;
+
+    gCanvas.width = window.innerWidth / 2;
+    gCanvas.height = window.innerHeight / 2;
 
     gOffset = getCanvasOffset();
 
@@ -20,15 +20,25 @@ function init() {
 }
 
 function getCanvasOffset() {
-    return {left: gCanvas.offsetLeft, top: gCanvas.offsetTop}
+    return { left: gCanvas.offsetLeft, top: gCanvas.offsetTop }
 }
 
-function onEnterText(txt) { 
-    var line = createLine(txt, 20, 0, 20, gCtx.fillStyle, 'left');
-
+function onEnterText(txt) {
+    // TODO: get the correct x and y
+    var line = createLine(txt, 20, 10, 80, gCtx.fillStyle, 'left');
     var meme = getMeme();
+    renderLine(meme.txts.length-1);
+}
 
-    gCtx.fillText(txt, 0, 20);
+// render the selected line
+function renderMeme() {
+    var meme = getMeme();
+    var image = getImageById(meme.selectedImgId);
+    drawImgOnCanvas(image);
+    
+    var line = meme.txts[currLine];
+    gCtx.font=`${line.size}px ${line.fontFamily}`;
+    gCtx.fillText(line.line, line.x, line.y);
 }
 
 function onChangeTextColor(color) {
@@ -49,7 +59,7 @@ function renderGallery() {
     var strHtml = '<ul>';
     for (var i = 0; i < images.length; i++) {
         strHtml += `    <li class="gallery-img">
-                        <img src="${images[i].url}" data-id="${images[i].id}" onclick="onSelectImg(this)">
+                        <img src="${images[i].url}" data-id="${images[i].id}" onclick="onSelectImg(${images[i].id})">
                         </li>`
     }
     strHtml += '</ul>'
@@ -58,10 +68,6 @@ function renderGallery() {
 
 // gets image  Element
 // TO DO - UPDATE THE MODAL - WITH THE SELECTED IMAGE  
-function onSelectImg(image) {
-    createMeme(image.dataset.id);
-    
-    drawImgOnCanvas(image);
-    // console.log('Element',image);
-    // console.log('Element Modal ID',image.dataset.id);
+function onSelectImg(id) {
+    createMeme(id);
 }
