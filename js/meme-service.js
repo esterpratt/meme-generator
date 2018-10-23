@@ -60,3 +60,7 @@ function drawImgOnCanvas(image){
 function getImageById(id) {
     return document.querySelector(`[data-id='${id}']`);
 }
+
+function changeColor(lineIdx, color) {
+    gMeme.txts[lineIdx].color = color;
+}

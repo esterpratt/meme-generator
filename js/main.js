@@ -3,6 +3,7 @@
 var gCanvas;
 var gCtx;
 var gOffset;
+var gSelectedLineIdx = 0;
 
 function init() {
     var imgs = createImgs();
@@ -25,7 +26,8 @@ function getCanvasOffset() {
 
 function onEnterText(txt) {
     // TODO: get the correct x and y
-    var line = createLine(txt, 20, 10, 80, gCtx.fillStyle, 'left');
+    
+    var line = createLine(txt, 20, 0, 5, gCtx.fillStyle, 'left');
     renderMeme();
 }
 
@@ -34,18 +36,24 @@ function renderMeme() {
     var meme = getMeme();
     var image = getImageById(meme.selectedImgId);
     drawImgOnCanvas(image);
-}
 
-function delete() {
-
-    meme.txts.foreach(txt, => {
+    meme.txts.forEach((line) => {
         gCtx.font=`${line.size}px ${line.fontFamily}`;
         gCtx.fillText(line.line, line.x, line.y);
     })
 }
 
 function onChangeTextColor(color) {
+    // change current color
     gCtx.fillStyle = color;
+
+    // if there is a line selected
+    if (gSelectedLineIdx != -1) {
+        // change its color
+        changeColor(gSelectedLineIdx, color);
+        // render the meme
+        renderMeme();
+    }
 }
 
 function onClickCanvas(ev) {
