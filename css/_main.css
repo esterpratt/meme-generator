@@ -1,0 +1,43 @@
+.grid-container {
+    display: grid;
+    grid-template: 
+        'header'
+        'gallery'
+        'meme'
+        'tools'
+        'controller'
+}
+
+.grid-container * {
+    border: 1px solid black;
+}
+
+header {
+    grid-area: header;
+}
+
+.gallery-container {
+    grid-area: gallery;
+}
+
+.meme-container {
+    grid-area: meme;
+}
+
+.tools-container {
+    grid-area: tools;
+}
+
+.controller-container {
+    grid-area: controller;
+}
+
+/* @media (min-width: 768px) {
+    .grid-container {
+        grid-template: 
+        'header header header'
+        'gallery gallery gallery'
+        'meme meme tools'
+        'controller controller controller'
+    }
+} */
