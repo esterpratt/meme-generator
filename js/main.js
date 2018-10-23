@@ -78,8 +78,17 @@ function renderGallery() {
 }
 
 // gets image  Element
-// TO DO - UPDATE THE MODAL - WITH THE SELECTED IMAGE  
+// TO DO -   
+// 1. DISPLAY:NONE - TO GALLERY   
+// 2. SHOW BTN - BACK TO GALLERY   
 function onSelectImg(id) {
+    document.querySelector('.gallery-container').style.display = 'none';
+    document.querySelector('.meme-container').style.display = 'block';
     createMeme(id);
     renderMeme()
+}
+
+function returnToGallery(event) {
+    document.querySelector('.gallery-container').style.display = 'block';
+    document.querySelector('.meme-container').style.display = 'none';
 }
