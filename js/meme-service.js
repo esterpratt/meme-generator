@@ -3,6 +3,7 @@
 var gStyleState;
 var gImgs;
 var gMeme;
+var gCurrLine = 0;
 
 function createImgs() {
     gImgs = [
@@ -31,23 +32,24 @@ function createMeme(id) {
     gMeme = {
         selectedImgId: id,
         txts: [],
-        selectedLineIdx: -1
+        selectedLine: -1
     };
 }
 
-function createLine(val, size, x, y, color, fontFamily, align) {
+function udpateLine(txt, size, x, y) {
     var line = {
-        line: val,
-        size: size,
-        x: x,
-        y: y,
-        color: color,
-        fontFamily: fontFamily,
-        align: align,
+        txt,
+        size,
+        x,
+        y,
+        color: 'black',
+        fontFamily: 'Arial',
+        align: 'left',
         isSelected: true
     }
 
-    gMeme.txts.push(line);
+    gMeme.txts[gCurrLine] = line;
+    // gMeme.txts.push(line);
     return line;
 }
 
@@ -70,8 +72,8 @@ function getImageById(id) {
     return document.querySelector(`[data-id='${id}']`);
 }
 
-function changeColor(lineIdx, color) {
-    gMeme.txts[lineIdx].color = color;
+function changeColor(line, color) {
+    line.color = color;
 }
 
 function downloadCanvas(elLink) {

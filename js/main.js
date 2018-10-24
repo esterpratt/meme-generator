@@ -6,22 +6,20 @@ var gCtx;
 function init() {
     var imgs = createImgs();
 
-    gStyleState = {
-        color: '#000',
-        size: 20,
-        fontFamily: 'arial',
-    }
-
-    gCanvas = document.getElementById('canvas');
-    gCtx = gCanvas.getContext('2d');
+    // gStyleState = {
+    //     color: '#000',
+    //     size: 20,
+    //     fontFamily: 'arial',
+    // }
 
     renderGallery();
     // TO DELETE LATER WHEN GALLERY SYNC
     // createMeme(1);
-
 }
 
 function initCanvas() {
+    gCanvas = document.getElementById('canvas');
+    gCtx = gCanvas.getContext('2d');
     var containerWidth = document.querySelector('main').offsetWidth;
     var containerHeight = document.querySelector('main').offsetHeight;
     gCanvas.width = containerWidth;
@@ -33,11 +31,14 @@ function initCanvas() {
 // }
 
 function onEnterText(txt) {
+
+    // var line = gMeme.selectedLine;
+
     var size = 20;
     var y;
 
     // get y of last entered line
-    if (gMeme.txts.length > 0) {
+    if (gMeme.txts.length > 1) {
         let prevLine = gMeme.txts[gMeme.txts.length - 1];
         let prevY = prevLine.y;
         let spaceBetweenLines = gCanvas.height / 5;
@@ -47,14 +48,19 @@ function onEnterText(txt) {
     }
 
     var x = 20;
-    var line = createLine(txt, size, x, y, 'black', 'Ariel', 'left');
-    gMeme.selectedLineIdx = gMeme.txts.length - 1;
-    setTextWidth(line);
+    if (gMeme.selectedLine === -1) {
+        var line = udpateLine(txt, size, x, y);
+        gMeme.selectedLine = line;
+    } else {
+        gMeme.selectedLine.txt = txt;
+    }
+
+    setTextWidth(gMeme.selectedLine);
     renderMeme();
 }
 
 function setTextWidth(line) {
-    var txt = line.line;
+    var txt = line.txt;
     // TODO - Is it necessary to define gCtx.font??
     gCtx.font = `${line.size}px ${line.fontFamily}`;
     var width = gCtx.measureText(txt).width;
@@ -68,29 +74,29 @@ function renderMeme() {
     var image = getImageById(meme.selectedImgId);
     drawImgOnCanvas(image);
 
-    meme.txts.forEach((line) => {
-        console.log(line.isSelected);
-
+    meme.txts.forEach(line => {
         if (line.isSelected) {
             markLine(line);
         }
         gCtx.font = `${line.size}px ${line.fontFamily}`;
         gCtx.fillStyle = line.color;
-        gCtx.fillText(line.line, line.x, line.y);
+        gCtx.fillText(line.txt, line.x, line.y);
     })
 }
 
 function onChangeTextColor(color) {
     // TODO: change current color according to global state!
-    gCtx.fillStyle = color;
+    // gCtx.fillStyle = color;
 
     // if there is a line selected
-    if (gMeme.selectedLineIdx != -1) {
+    // if (gMeme.selectedLine !== -1) {
+    //     console.log(selectedLine);
+        
         // change its color
-        changeColor(gMeme.selectedLineIdx, color);
+        changeColor(gMeme.selectedLine, color);
         // render the meme
         renderMeme();
-    }
+    // }
 }
 
 function onClickCanvas(ev) {
@@ -98,27 +104,23 @@ function onClickCanvas(ev) {
     var mouseY = ev.clientY - gCanvas.offsetTop;
 
     // check if clicked on line
-    var lineIndex = gMeme.txts.findIndex((line) => {
-        // TODO: draw lines around selected line
-        // TODO: open tools, if open - change values according to selected line
+    var line = gMeme.txts.find((line) => {
         return (mouseY < line.y && mouseY > line.y - line.size)
     });
 
     // if clicked on line - mark it
-    if (lineIndex != -1) {
-        var line = getLineByIndex(lineIndex);
+    if (line) {
         line.isSelected = true;
     }
 
     // if clicked on different line - remove isSelected from other line
-    if (gMeme.selectedLineIdx != lineIndex) {
-        var line = getLineByIndex(gMeme.selectedLineIdx);
-        if (line) {
-            line.isSelected = false;
+    if (gMeme.selectedLine !== line) {
+        if (gMeme.selectedLine) {
+            gMeme.selectedLine.isSelected = false;
         }
     }
 
-    gMeme.selectedLineIdx = lineIndex;
+    gMeme.selectedLine = line;
 
     renderMeme();
 }
@@ -167,7 +169,7 @@ function onSelectImg(id) {
 
     // init canvas
     initCanvas();
-
+    console.log(id);
     createMeme(id);
     renderMeme();
 }
@@ -201,9 +203,9 @@ function onChangeStyle(key, value) {
 //     gCtx.font = `30px ${fontFamily} `;
 
 //     // if there is a line selected
-//     if (gSelectedLineIdx != -1) {
+//     if (gSelectedLine != -1) {
 //         // change its color
-//         changeFontFamily(gSelectedLineIdx, fontFamily);
+//         changeFontFamily(gSelectedLine, fontFamily);
 //         // render the meme
 //         renderMeme();
 //     }
