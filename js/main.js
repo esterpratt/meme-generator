@@ -277,3 +277,10 @@ function onChangeStyle(key, value) {
 //         renderMeme();
 //     }
 // }
+function onEraseClick() {
+    eraseEl();
+}
+
+function onMoveCanvasEl(direction) {
+    moveCanvasEl(direction);
+}
