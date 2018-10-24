@@ -2,6 +2,7 @@
 
 var gCanvas;
 var gCtx;
+<<<<<<< HEAD
 var gOffset;
 var gSelectedLineIdx = -1;
 
@@ -9,6 +10,10 @@ var gSelectedLineIdx = -1;
 // TODO:
 // font-family, font-size,l-r align, up-down align, delete
 
+=======
+// var gOffset;
+var gSpaceBetweenLines;
+>>>>>>> 04c78ab3f5f21570f428b51a5c0aa7b9f7dc4c1d
 
 function init() {
     var imgs = createImgs();
@@ -26,24 +31,42 @@ function init() {
     gCanvas.width = window.innerWidth / 2;
     gCanvas.height = window.innerHeight / 2;
 
+    gSpaceBetweenLines = gCanvas.height / 15;
+
     renderGallery()
     // createMeme();
 }
 
-function getCanvasOffset() {
-    return { left: gCanvas.offsetLeft, top: gCanvas.offsetTop }
-}
+// function getCanvasOffset() {
+//     return { left: gCanvas.offsetLeft, top: gCanvas.offsetTop }
+// }
 
 function onEnterText(txt) {
+<<<<<<< HEAD
     // TODO: get the correct x and y
     var size = 20;
     var x = 0;
     var y = size;
+=======
+
+    var size = 20;
+
+    // get y and size of last entered line
+    if (gMeme.txts.length > 0) {
+        var prevLine = gMeme.txts[gMeme.txts.length - 1];
+        var prevY = prevLine.y;
+        var y = prevY + gSpaceBetweenLines;
+    } else {
+        var y = size;
+    }
+
+    var x = 20;
+>>>>>>> 04c78ab3f5f21570f428b51a5c0aa7b9f7dc4c1d
     var line = createLine(txt, size, x, y, gCtx.fillStyle, 'left');
     renderMeme();
 }
 
-// render the selected line
+// render meme
 function renderMeme() {
     var meme = getMeme();
     var image = getImageById(meme.selectedImgId);
@@ -51,34 +74,41 @@ function renderMeme() {
 
     meme.txts.forEach((line) => {
         gCtx.font = `${line.size}px ${line.fontFamily}`;
+        gCtx.fillStyle = line.color;
         gCtx.fillText(line.line, line.x, line.y);
     })
 }
 
 function onChangeTextColor(color) {
+<<<<<<< HEAD
     // change current color
     onChangeStyle('color',color);
+=======
+    // TODO: change current color according to global state!
+>>>>>>> 04c78ab3f5f21570f428b51a5c0aa7b9f7dc4c1d
     gCtx.fillStyle = color;
 
     // if there is a line selected
-    if (gSelectedLineIdx != -1) {
+    if (gMeme.selectedLineIdx != -1) {
         // change its color
-        changeColor(gSelectedLineIdx, color);
+        changeColor(gMeme.selectedLineIdx, color);
         // render the meme
         renderMeme();
     }
 }
 
 function onClickCanvas(ev) {
-    var x = ev.clientX - gCanvas.offsetLeft;
-    var y = ev.clientY - gCanvas.offsetTop;
+    // var mouseX = ev.clientX - gCanvas.offsetLeft;
+    var mouseY = ev.clientY - gCanvas.offsetTop;
     
-    var lineY = gMeme.txts[0].y;
-    var lineSize = gMeme.txts[0].size;
     // check if clicked on line
-    if (y < lineY && y > lineY - lineSize) {
-        console.log('hi');
-    }
+    var lineIndex = gMeme.txts.findIndex((line) => {
+        // TODO: draw lines around selected line
+        // TODO: open tools, if open - change values according to selected line
+        return (mouseY < line.y && mouseY > line.y - line.size)
+    });
+
+    gMeme.selectedLineIdx = lineIndex;
 }
 
 
