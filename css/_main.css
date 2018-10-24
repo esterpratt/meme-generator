@@ -18,14 +18,14 @@ header {
 
 header h1 {text-align: center;}
 
-.gallery-container {
+.gallery-items {
     grid-area: gallery;
 }
 
 /* TO DO - GRID - MINMAX */
-.gallery-container ul {list-style-type: none;margin: 0 auto;width: fit-content;}
-.gallery-container ul>li {display: inline}
-.gallery-container ul li img {
+.gallery-items ul {list-style-type: none;margin: 0 auto;width: fit-content;}
+.gallery-items ul>li {display: inline}
+.gallery-items ul li img {
     /* max-width: 100%; */
     max-width: 200px;
     min-width: 200px;

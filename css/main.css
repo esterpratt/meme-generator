@@ -5,14 +5,20 @@ body{
     font-family: 'Arimo', sans-serif;
 }
 
+
+/* HELPERS */
 .rtl {direction: rtl;text-align: right;}
 
 input[type=text] {
     border: none;
     background-color: transparent;
-    font-size:20px;
+    font-size:30px;
+    width: 80%;
     border-bottom: 2px solid red;
 }
+
+
+/* GRID */
 
 .grid-container {
     box-sizing: border-box;
@@ -27,6 +33,21 @@ input[type=text] {
     'footer';
     grid-row-gap: 10px;
     height: 100vh;
+}
+
+body.gallery aside, body.gallery .tools, body.gallery .controller, body.gallery #canvas{
+    display: none;
+}
+body.gallery .grid-container {
+    /* box-sizing: border-box; */
+    /* display: grid; */
+    grid-template-rows: 80px auto 40px;
+    grid-template-areas:
+    'header'
+    'gallery'
+    'footer';
+    /* grid-row-gap: 10px; */
+    /* height: 100vh; */
 }
 
 .grid-container > * {
@@ -67,6 +88,36 @@ aside li:hover ,aside li:nth-child(odd):not(.active):hover {
 }
 aside li.active {
     background-color: rgb(218, 81, 47);
+}
+
+/* MODAL */
+.text-edit-modal .buttons{
+    display: flex;
+    padding-top:20px;
+    justify-content: space-evenly;
+}
+.text-edit-modal label{
+    padding: 15px ; 
+    width: 90%;
+    color: black;
+    /* text-align: center; */
+    display: block;
+}
+
+/* .text-edit-modal input:not(:first-child), select { */
+    /* margin-left: 20px; */
+/* } */
+
+
+.gallery-items {grid-area: gallery}
+.gallery-items ul {list-style-type: none;margin: 0 auto;width: fit-content;}
+.gallery-items ul>li {display: inline}
+.gallery-items ul li img {
+    /* max-width: 100%; */
+    max-width: 200px;
+    min-width: 200px;
+    height: 150px;
+    object-fit: cover;
 }
 
 .tools {
@@ -125,6 +176,9 @@ footer{
         /* 'aside main main' */
         'controller tools tools'
         'footer footer footer';
+    }
+    body.gallery .grid-container {
+        grid-template-columns:100%;
     }
     footer {line-height: 80px;}
 }

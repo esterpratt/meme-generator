@@ -10,58 +10,80 @@
 
 </head>
 
-<body onload="init()">
+<body onload="init()" class="gallery">
     <div class="grid-container">
         <header>
-        <div class="title">
-            <h1 data-translate="title">meme'tasek?</h1> 
-        </div>    
-        <div class="lang-btn">
-            <select id="translate" onchange="changeLanguage(value)">
-                <option value="eng">ENG</option>
-                <option value="heb">עבר</option>
-            </select>
-        </div>
+            <div class="title">
+                <h1 data-translate="title">meme'tasek?</h1>
+            </div>
+            <div class="lang-btn">
+                <select id="translate" onchange="changeLanguage(value)">
+                    <option value="eng">ENG</option>
+                    <option value="heb">עבר</option>
+                </select>
+            </div>
         </header>
+        <div class="gallery-items">
+
+        </div>
         <main>
-        <canvas id="canvas" onclick="onClickCanvas(event)"></canvas>
+            <canvas id="canvas" onclick="onClickCanvas(event)"></canvas>
         </main>
         <aside>
-           <h2 data-translate="headlayers">Layers</h2>
+            <h2 data-translate="headlayers" style="display: none">Layers</h2>
             <ul style="display: none">
-                <li class="layer layer1" onclick="underConstraction(this)"><span class="title">Text 1</span><span class="rename"><i class="far fa-edit"></i></span><span class="time">11:14:56</span><span class="delete"><i class="far fa-trash-alt"></i></span></li>
-                <li class="active layer layer1" onclick="underConstraction(this)"><span class="title">Text 1</span><span class="rename"><i class="far fa-edit"></i></span><span class="time">11:14:56</span><span class="delete"><i class="far fa-trash-alt"></i></span></li>
-                <li class="layer layer1" onclick="underConstraction(this)"><span class="title">Text 1</span><span class="rename"><i class="far fa-edit"></i></span><span class="time">11:14:56</span><span class="delete"><i class="far fa-trash-alt"></i></span></li>
-                <li class="layer layer1" onclick="underConstraction(this)"><span class="title">Text 1</span><span class="rename"><i class="far fa-edit"></i></span><span class="time">11:14:56</span><span class="delete"><i class="far fa-trash-alt"></i></span></li>
-                <li class="layer layer1" onclick="underConstraction(this)"><span class="title">Text 1</span><span class="rename"><i class="far fa-edit"></i></span><span class="time">11:14:56</span><span class="delete"><i class="far fa-trash-alt"></i></span></li>
-                <li class="layer layer1" onclick="underConstraction(this)"><span class="title">Text 1</span><span class="rename"><i class="far fa-edit"></i></span><span class="time">11:14:56</span><span class="delete"><i class="far fa-trash-alt"></i></span></li>
-                <li class="layer layer1" onclick="underConstraction(this)"><span class="title">Text 1</span><span class="rename"><i class="far fa-edit"></i></span><span class="time">11:14:56</span><span class="delete"><i class="far fa-trash-alt"></i></span></li>
-            
+                <li class="layer" onclick="underConstraction(this)"><span class="title">Text 1</span><span class="rename"><i
+                            class="far fa-edit"></i></span><span class="time">11:14:56</span><span class="delete"><i
+                            class="far fa-trash-alt"></i></span></li>
+                <li class="active layer" onclick="underConstraction(this)"><span class="title">Text 1</span><span class="rename"><i
+                            class="far fa-edit"></i></span><span class="time">11:14:56</span><span class="delete"><i
+                            class="far fa-trash-alt"></i></span></li>
+                <li class="layer" onclick="underConstraction(this)"><span class="title">Text 1</span><span class="rename"><i
+                            class="far fa-edit"></i></span><span class="time">11:14:56</span><span class="delete"><i
+                            class="far fa-trash-alt"></i></span></li>
+                <li class="layer" onclick="underConstraction(this)"><span class="title">Text 1</span><span class="rename"><i
+                            class="far fa-edit"></i></span><span class="time">11:14:56</span><span class="delete"><i
+                            class="far fa-trash-alt"></i></span></li>
+                <li class="layer" onclick="underConstraction(this)"><span class="title">Text 1</span><span class="rename"><i
+                            class="far fa-edit"></i></span><span class="time">11:14:56</span><span class="delete"><i
+                            class="far fa-trash-alt"></i></span></li>
+                <li class="layer" onclick="underConstraction(this)"><span class="title">Text 1</span><span class="rename"><i
+                            class="far fa-edit"></i></span><span class="time">11:14:56</span><span class="delete"><i
+                            class="far fa-trash-alt"></i></span></li>
+                <li class="layer" onclick="underConstraction(this)"><span class="title">Text 1</span><span class="rename"><i
+                            class="far fa-edit"></i></span><span class="time">11:14:56</span><span class="delete"><i
+                            class="far fa-trash-alt"></i></span></li>
             </ul>
 
             <!-- Text Modal -->
             <div class="text-edit-modal">
+                <h2 data-translate="texteditor">Text Editor</h2>
                 <label>
-                    <input type="text" placeholder="Add Line" onchange="onEnterText(this.value)" />
+                    <input type="text" placeholder="text line" onchange="onEnterText(this.value)" />
                 </label>
+
                 <label>
-                    font color
-                    <input type="color" onchange="onChangeTextColor(this.value)">
+                    Font Color
+                    <input type="color" value="#e66465" onchange="onChangeTextColor(this.value)">
                 </label>
+
                 <label>
-                    font family
+                    Font Family
                     <select onchange="onChangeFontFamily(this.value)">
                         <option value="arial">Arial</option>
                         <option value="timesnewroman">Times New Roman</option>
                         <option value="david">David</option>
                     </select>
-                    <!-- <input type="font-family" onchange="onChangeFontFamily(this.value)"> -->
-                    
                 </label>
+
                 <label>
-                    font size
-                    <!-- <input type="color" onchange="onChangeFontSize(this.value)"> -->
+                    Font Size<input type="range" name="font-size" id="" onchange="onChangeFontSize(this.value)">
                 </label>
+                <div class="buttons">
+                    <button>Approve/EDIT</button>
+                    <button>Close</button>
+
+                </div>
             </div>
 
         </aside>
@@ -75,11 +97,15 @@
             <a href="" class="btn"><i class="fas fa-eraser"></i></a>
         </div>
         <div class="controller" onclick="underConstraction(this)">
-                <a href="" class="btn btn-control"><i class="fas fa-arrow-left" ></i> <span data-translate="btnback" title="Back to gallery">Back</span></a>
-                <a href="" class="btn btn-control"><i class="fas fa-universal-access"></i> <span data-translate="btnacces" title="Change to accessibility mode">Accessibility</span></a>
-                <a href="" class="btn btn-control"><i class="fas fa-share-alt" ></i> <span data-translate="btnshare" title="Share with friends"> Share</span></a>
-                <a href="" class="btn btn-control"><i class="fas fa-file-upload" ></i> <span data-translate="btnupload" title="Upload to server"> Upload</span></a>
-                <a href="" class="btn btn-control"><i class="fas fa-download" ></i> <span data-translate="btndownload" title="Download image"> Download</span></a>
+            <a href="" class="btn btn-control"><i class="fas fa-arrow-left"></i> <span data-translate="btnback" title="Back to gallery">Back</span></a>
+            <a href="" class="btn btn-control"><i class="fas fa-universal-access"></i> <span data-translate="btnacces"
+                    title="Change to accessibility mode">Accessibility</span></a>
+            <a href="" class="btn btn-control"><i class="fas fa-share-alt"></i> <span data-translate="btnshare" title="Share with friends">
+                    Share</span></a>
+            <a href="" class="btn btn-control"><i class="fas fa-file-upload"></i> <span data-translate="btnupload"
+                    title="Upload to server"> Upload</span></a>
+            <a href="" class="btn btn-control"><i class="fas fa-download"></i> <span data-translate="btndownload" title="Download image">
+                    Download</span></a>
         </div>
         <footer data-translate="headfooter">⛬ SHARE WITH LOVE ❤</footer>
     </div>
@@ -88,10 +114,11 @@
     <script src="js/util-service.js"></script>
     <script src="js/internationalization.js"></script>
     <script src="js/canvas.js"></script>
-    
+
 
     <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+        crossorigin="anonymous">
 </body>
 
 </html>
