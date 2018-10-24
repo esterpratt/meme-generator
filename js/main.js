@@ -75,10 +75,12 @@ function setTextWidth(line) {
 }
 
 // render meme
-function renderMeme() {
+function renderMeme(img) {
     gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
+    var image;
     var meme = getMeme();
-    var image = getImageById(meme.selectedImgId);
+    if (meme.elImg) image = meme.elImg;
+    else image = getImageById(meme.selectedImgId);
     drawImgOnCanvas(image);
 
     meme.txts.forEach(line => {
@@ -106,10 +108,11 @@ function onChangeTextColor(color) {
     }
 }
 function onChangeFontSize(value) {
-    if (value === 'plus') value = 5;
-    else if (value === 'minus') value = -5;
     if (gMeme.selectedLine) {
-        changeFontSize(gMeme.selectedLine, value);
+        if (value === 'plus') changeFontSize(gMeme.selectedLine, 5);
+        else if (value === 'minus') {
+            if (gMeme.selectedLine.size > 5) changeFontSize(gMeme.selectedLine, -5);
+        }
         renderMeme();
     }
 
@@ -237,7 +240,7 @@ function onSelectImg(id) {
 }
 
 function returnToGallery(ev) {
-    ev.preventDefault();
+    // ev.preventDefault();
     document.body.classList.add('gallery');
     document.querySelector('.gallery-items').style.display = 'inherit';
 
@@ -256,4 +259,11 @@ function onEraseClick() {
 
 function onMoveCanvasEl(direction) {
     moveCanvasEl(direction);
+}
+
+function onUploadImgBtn(ev){
+    // handleImageFromInput(ev, drawImgOnCanvas);
+    handleImageFromInput(ev, uploadNewImg);
+    // handleImageFromInput(ev, createImg);
+    
 }
