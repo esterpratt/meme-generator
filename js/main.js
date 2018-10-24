@@ -17,20 +17,19 @@ function init() {
     gCanvas = document.getElementById('canvas');
     gCtx = gCanvas.getContext('2d');
 
-    var containerWidth = document.querySelector('main').offsetWidth;
-    var containerHeight = document.querySelector('main').offsetHeight;
-    gCanvas.width = containerWidth;
-    gCanvas.height = containerHeight;
-
-    console.log(containerWidth);
-    console.log(containerHeight);
-
     gSpaceBetweenLines = gCanvas.height / 10;
 
     renderGallery()
     // TO DELETE LATER WHEN GALLERY SYNC
     // createMeme(1);
 
+}
+
+function initCanvas() {
+    var containerWidth = document.querySelector('main').offsetWidth;
+    var containerHeight = document.querySelector('main').offsetHeight;
+    gCanvas.width = containerWidth;
+    gCanvas.height = containerHeight;
 }
 
 // function getCanvasOffset() {
@@ -73,7 +72,7 @@ function renderMeme() {
 
     meme.txts.forEach((line) => {
         console.log(line.isSelected);
-        
+
         if (line.isSelected) {
             markLine(line);
         }
@@ -114,18 +113,18 @@ function onClickCanvas(ev) {
     }
 
     // if clicked on different line - remove isSelected from other line
-    
+
     if (gMeme.selectedLineIdx != lineIndex) {
         var line = getLineByIndex(gMeme.selectedLineIdx);
         console.log(line);
-        
+
         if (line) {
             line.isSelected = false;
             console.log(line);
-            
+
         }
     }
-    
+
     gMeme.selectedLineIdx = lineIndex;
 
     renderMeme();
@@ -172,7 +171,10 @@ function onSelectImg(id) {
     // document.querySelector('main').style.display = 'block';
 
     // gOffset = getCanvasOffset();
-    
+
+    // init canvas
+    initCanvas();
+
     createMeme(1);
     renderMeme();
 }
