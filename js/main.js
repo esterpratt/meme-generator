@@ -2,18 +2,8 @@
 
 var gCanvas;
 var gCtx;
-<<<<<<< HEAD
-var gOffset;
-var gSelectedLineIdx = -1;
-
-
-// TODO:
-// font-family, font-size,l-r align, up-down align, delete
-
-=======
 // var gOffset;
 var gSpaceBetweenLines;
->>>>>>> 04c78ab3f5f21570f428b51a5c0aa7b9f7dc4c1d
 
 function init() {
     var imgs = createImgs();
@@ -42,13 +32,7 @@ function init() {
 // }
 
 function onEnterText(txt) {
-<<<<<<< HEAD
-    // TODO: get the correct x and y
-    var size = 20;
-    var x = 0;
-    var y = size;
-=======
-
+    console.log(txt);
     var size = 20;
 
     // get y and size of last entered line
@@ -61,7 +45,6 @@ function onEnterText(txt) {
     }
 
     var x = 20;
->>>>>>> 04c78ab3f5f21570f428b51a5c0aa7b9f7dc4c1d
     var line = createLine(txt, size, x, y, gCtx.fillStyle, 'left');
     renderMeme();
 }
@@ -80,12 +63,7 @@ function renderMeme() {
 }
 
 function onChangeTextColor(color) {
-<<<<<<< HEAD
-    // change current color
-    onChangeStyle('color',color);
-=======
     // TODO: change current color according to global state!
->>>>>>> 04c78ab3f5f21570f428b51a5c0aa7b9f7dc4c1d
     gCtx.fillStyle = color;
 
     // if there is a line selected
