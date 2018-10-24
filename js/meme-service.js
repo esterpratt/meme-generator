@@ -60,7 +60,6 @@ function deleteLine(line) {
     var lineIdx = gMeme.txts.findIndex(currLine => {
         return line.id === currLine.id;
     })
-    console.log(lineIdx);
 
     gMeme.selectedLine = undefined;
     gMeme.txts.splice(lineIdx, 1);
