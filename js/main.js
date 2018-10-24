@@ -32,28 +32,31 @@ function initCanvas() {
 
 function onEnterText(txt) {
 
-    // var line = gMeme.selectedLine;
+    var line = gMeme.selectedLine;
 
-    var size = 20;
-    var y;
+    // line.size = 20;
+    // var y = line.y;
 
-    // get y of last entered line
-    if (gMeme.txts.length > 1) {
-        let prevLine = gMeme.txts[gMeme.txts.length - 1];
-        let prevY = prevLine.y;
-        let spaceBetweenLines = gCanvas.height / 5;
-        y = prevY + spaceBetweenLines;
+    // if (gMeme.selectedLine === -1) {
+    //     let line = createLine(txt, size, x, y);
+    //     gMeme.selectedLine = line;
+    // } else {
+    if (txt) {
+        line.isSelected = true;
     } else {
-        y = size;
+        // delete from array
+        // find line index
+        if (gMeme.txts.length > 1) {
+            deleteLine(line);
+            // change to new line editor
+            addNewLine();
+        }
+        // line.size = 0;
+        // line.isSelected = false;
     }
 
-    var x = 20;
-    if (gMeme.selectedLine === -1) {
-        var line = udpateLine(txt, size, x, y);
-        gMeme.selectedLine = line;
-    } else {
-        gMeme.selectedLine.txt = txt;
-    }
+    gMeme.selectedLine.txt = txt;
+    // }
 
     setTextWidth(gMeme.selectedLine);
     renderMeme();
@@ -75,12 +78,14 @@ function renderMeme() {
     drawImgOnCanvas(image);
 
     meme.txts.forEach(line => {
-        if (line.isSelected) {
-            markLine(line);
+        if (line.txt) {
+            if (line.isSelected) {
+                markLine(line);
+            }
+            gCtx.font = `${line.size}px ${line.fontFamily}`;
+            gCtx.fillStyle = line.color;
+            gCtx.fillText(line.txt, line.x, line.y);
         }
-        gCtx.font = `${line.size}px ${line.fontFamily}`;
-        gCtx.fillStyle = line.color;
-        gCtx.fillText(line.txt, line.x, line.y);
     })
 }
 
@@ -91,11 +96,11 @@ function onChangeTextColor(color) {
     // if there is a line selected
     // if (gMeme.selectedLine !== -1) {
     //     console.log(selectedLine);
-        
-        // change its color
-        changeColor(gMeme.selectedLine, color);
-        // render the meme
-        renderMeme();
+
+    // change its color
+    changeColor(gMeme.selectedLine, color);
+    // render the meme
+    renderMeme();
     // }
 }
 
@@ -108,10 +113,7 @@ function onClickCanvas(ev) {
         return (mouseY < line.y && mouseY > line.y - line.size)
     });
 
-    // if clicked on line - mark it
-    if (line) {
-        line.isSelected = true;
-    }
+    var elHeadline = document.querySelector('.editorHeadline');
 
     // if clicked on different line - remove isSelected from other line
     if (gMeme.selectedLine !== line) {
@@ -120,9 +122,38 @@ function onClickCanvas(ev) {
         }
     }
 
-    gMeme.selectedLine = line;
+    // if clicked on line
+    if (line) {
+        gMeme.selectedLine = line;
+        line.isSelected = true;
+        // change headline
+        elHeadline.innerHTML = 'Line Editor';
+        // update Editor values
+
+
+        // if clicked outside
+    } else {
+        addNewLine();
+    }
 
     renderMeme();
+}
+
+function addNewLine() {
+    var elHeadline = document.querySelector('.editorHeadline');
+    // change headline
+    elHeadline.innerHTML = 'New Line Editor';
+    // if there is text on last line - add new line
+    if (gMeme.txts[gMeme.txts.length - 1].txt) {
+        var y = 20;
+        // get y of last entered line
+        let prevLine = gMeme.txts[gMeme.txts.length - 1];
+        let prevY = prevLine.y;
+        let spaceBetweenLines = gCanvas.height / 10;
+        y = prevY + spaceBetweenLines;
+
+        gMeme.selectedLine = createLine(20, 20, y);
+    }
 }
 
 function markLine(line) {
@@ -169,8 +200,9 @@ function onSelectImg(id) {
 
     // init canvas
     initCanvas();
-    console.log(id);
     createMeme(id);
+    // create first empty line
+    gMeme.selectedLine = createLine(20, 20, 20);
     renderMeme();
 }
 

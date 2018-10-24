@@ -3,7 +3,7 @@
 var gStyleState;
 var gImgs;
 var gMeme;
-var gCurrLine = 0;
+// var gCurrLine = 0;
 
 function createImgs() {
     gImgs = [
@@ -32,13 +32,13 @@ function createMeme(id) {
     gMeme = {
         selectedImgId: id,
         txts: [],
-        selectedLine: -1
+        selectedLine: 0
     };
 }
 
-function udpateLine(txt, size, x, y) {
+function createLine(size, x, y) {
     var line = {
-        txt,
+        id: createId(),
         size,
         x,
         y,
@@ -48,9 +48,16 @@ function udpateLine(txt, size, x, y) {
         isSelected: true
     }
 
-    gMeme.txts[gCurrLine] = line;
-    // gMeme.txts.push(line);
+    // gMeme.txts[gCurrLine] = line;
+    gMeme.txts.push(line);
     return line;
+}
+
+function deleteLine(line) {
+    var lineIdx = gMeme.txts.findIndex(currLine => {
+        return line.id === currLine.id;
+    })
+    gMeme.txts.splice(lineIdx, 1);
 }
 
 function getMeme() {
