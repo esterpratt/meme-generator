@@ -21,7 +21,7 @@ function onEnterText(txt) {
 
     var line = gMeme.selectedLine;
 
-    // if there is no line selected
+    // if there is no line selected - create new line
     if (!line) {
         var y = 30;
         // get y of last entered line
@@ -30,6 +30,10 @@ function onEnterText(txt) {
             let prevY = prevLine.y;
             let spaceBetweenLines = gCanvas.height / 10;
             y = prevY + spaceBetweenLines;
+            // if y more than canvas
+            if (y > gCanvas.height) {
+                y = 30;
+            }
         }
 
         // get current values
@@ -41,10 +45,11 @@ function onEnterText(txt) {
 
     if (txt) {
         line.isSelected = true;
-        gMeme.selectedLine.txt = txt;
-    } else {
-        deleteLine(line);
-    }
+    } 
+    gMeme.selectedLine.txt = txt;
+    // else {
+    //     deleteLine(line);
+    // }
 
     renderMeme();
 }
@@ -82,7 +87,9 @@ function renderMeme() {
                 setTextWidth(line);
                 markLine(line);
             }
+            
             gCtx.font = `${line.size}px ${line.fontFamily}`;
+            
             gCtx.fillStyle = line.color;
             gCtx.fillText(line.txt, line.x, line.y);
         }
@@ -134,6 +141,10 @@ function onClickCanvas(ev) {
         // if a line was selected
         if (line) {
             line.isSelected = true;
+        // if no line selected - go to add new line editor
+        } else {
+            onAddNewLine();
+            // renderTextEditor();
         }
         gMeme.selectedLine = line;
     }
@@ -142,6 +153,23 @@ function onClickCanvas(ev) {
     renderTextEditor(line);
 
     renderMeme();
+}
+
+function onAddNewLine() {
+    // if there is a line selected - remove selection and render text editor
+    if (gMeme.selectedLine) {
+        
+        // if line selected is empty - remove it from array
+        if (gMeme.selectedLine.txt === '') {
+            deleteLine(gMeme.selectedLine);
+        } else {
+            gMeme.selectedLine.isSelected = false;
+        }
+
+        gMeme.selectedLine = undefined;
+        renderMeme();
+        renderTextEditor();
+    }
 }
 
 function renderTextEditor(line) {
