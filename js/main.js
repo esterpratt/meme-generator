@@ -2,8 +2,6 @@
 
 var gCanvas;
 var gCtx;
-// var gOffset;
-var gSpaceBetweenLines;
 
 function init() {
     var imgs = createImgs();
@@ -17,9 +15,7 @@ function init() {
     gCanvas = document.getElementById('canvas');
     gCtx = gCanvas.getContext('2d');
 
-    gSpaceBetweenLines = gCanvas.height / 10;
-
-    renderGallery()
+    renderGallery();
     // TO DELETE LATER WHEN GALLERY SYNC
     // createMeme(1);
 
@@ -38,14 +34,16 @@ function initCanvas() {
 
 function onEnterText(txt) {
     var size = 20;
+    var y;
 
     // get y of last entered line
     if (gMeme.txts.length > 0) {
-        var prevLine = gMeme.txts[gMeme.txts.length - 1];
-        var prevY = prevLine.y;
-        var y = prevY + gSpaceBetweenLines;
+        let prevLine = gMeme.txts[gMeme.txts.length - 1];
+        let prevY = prevLine.y;
+        let spaceBetweenLines = gCanvas.height / 5;
+        y = prevY + spaceBetweenLines;
     } else {
-        var y = size;
+        y = size;
     }
 
     var x = 20;
@@ -67,8 +65,8 @@ function setTextWidth(line) {
 function renderMeme() {
     gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
     var meme = getMeme();
-    // var image = getImageById(meme.selectedImgId);
-    // drawImgOnCanvas(image);
+    var image = getImageById(meme.selectedImgId);
+    drawImgOnCanvas(image);
 
     meme.txts.forEach((line) => {
         console.log(line.isSelected);
@@ -113,15 +111,10 @@ function onClickCanvas(ev) {
     }
 
     // if clicked on different line - remove isSelected from other line
-
     if (gMeme.selectedLineIdx != lineIndex) {
         var line = getLineByIndex(gMeme.selectedLineIdx);
-        console.log(line);
-
         if (line) {
             line.isSelected = false;
-            console.log(line);
-
         }
     }
 
@@ -175,7 +168,7 @@ function onSelectImg(id) {
     // init canvas
     initCanvas();
 
-    createMeme(1);
+    createMeme(id);
     renderMeme();
 }
 
