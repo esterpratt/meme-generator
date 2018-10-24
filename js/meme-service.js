@@ -90,6 +90,11 @@ function changeFontFmaily(line, font) {
     line.fontFamily = font;
 }
 
+function changeFontSize(line, value){
+    line.size += value;
+    markLine(line);
+}
+
 function downloadCanvas(elLink) {
     gMeme.selectedLine.isSelected = false;
     gMeme.selectedLine = undefined;
