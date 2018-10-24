@@ -27,9 +27,9 @@ function init() {
 
     gSpaceBetweenLines = gCanvas.height / 10;
 
-    // renderGallery()
+    renderGallery()
     // TO DELETE LATER WHEN GALLERY SYNC
-    createMeme(1);
+    // createMeme(1);
 
 }
 
@@ -167,12 +167,13 @@ function renderGallery() {
 // 1. DISPLAY:NONE - TO GALLERY   
 // 2. SHOW BTN - BACK TO GALLERY   
 function onSelectImg(id) {
-    document.querySelector('.gallery-container').style.display = 'none';
-    document.querySelector('.meme-container').style.display = 'block';
+    document.body.classList.remove('gallery');
+    document.querySelector('.gallery-items').style.display = 'none';
+    // document.querySelector('main').style.display = 'block';
 
     // gOffset = getCanvasOffset();
-
-    createMeme(id);
+    
+    createMeme(1);
     renderMeme();
 }
 
