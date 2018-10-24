@@ -63,7 +63,7 @@ function drawImgOnCanvas(image) {
 
     //TODO - CONNECT TO ANOTHER FUNC!
     // HANDLE THE HEIGHT AND WIDTH - RESPONSIVE
-    gCtx.drawImage(image, 0, 0, 458, 315);
+    gCtx.drawImage(image, 0, 0, gCanvas.width, gCanvas.height);
 }
 
 function getImageById(id) {
