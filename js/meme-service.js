@@ -25,11 +25,14 @@ function createImgs() {
 }
 
 function createImg(url, keyWords) {
+    if (url === 'img')
+    console.log(arguments);
     return { id: createId(), url, keyWords };
 }
 
 function createMeme(id) {
     gMeme = {
+        elImg: null,
         selectedImgId: id,
         txts: [],
         selectedLine: undefined
@@ -92,7 +95,6 @@ function changeFontFmaily(line, font) {
 
 function changeFontSize(line, value){
     line.size += value;
-    markLine(line);
 }
 
 function downloadCanvas(elLink) {
@@ -144,4 +146,9 @@ function moveCanvasEl(direction) {
         }
         renderMeme();
     } 
+}
+
+function uploadNewImg(imgEl){
+    gMeme.elImg = imgEl;
+    renderMeme();
 }
