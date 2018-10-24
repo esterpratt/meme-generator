@@ -5,16 +5,7 @@ var gCtx;
 
 function init() {
     var imgs = createImgs();
-
-    // gStyleState = {
-    //     color: '#000',
-    //     size: 20,
-    //     fontFamily: 'arial',
-    // }
-
     renderGallery();
-    // TO DELETE LATER WHEN GALLERY SYNC
-    // createMeme(1);
 }
 
 function initCanvas() {
@@ -25,10 +16,6 @@ function initCanvas() {
     gCanvas.width = containerWidth;
     gCanvas.height = containerHeight;
 }
-
-// function getCanvasOffset() {
-//     return { left: gCanvas.offsetLeft, top: gCanvas.offsetTop }
-// }
 
 function onEnterText(txt) {
 
@@ -47,13 +34,7 @@ function onEnterText(txt) {
 
         // get current values
         var currentValues = getCurrentValues();
-<<<<<<< HEAD
-        
-=======
-        console.log(currentValues);
 
-
->>>>>>> 36405c866ab751c2a4a732f51e22cfa327510d14
         gMeme.selectedLine = createLine(20, 20, y, currentValues.color, currentValues.font);
         line = gMeme.selectedLine;
     }
@@ -61,13 +42,8 @@ function onEnterText(txt) {
     if (txt) {
         line.isSelected = true;
         gMeme.selectedLine.txt = txt;
-        // setTextWidth(gMeme.selectedLine);
     } else {
         deleteLine(line);
-        console.log(gMeme.txts);
-
-        // change to new line editor
-        // addNewLine();
     }
 
     renderMeme();
@@ -245,27 +221,6 @@ function returnToGallery(ev) {
 function onDownloadImage(el, ev) {
     downloadCanvas(el);
 }
-
-// function onChangeStyle(key, value) {
-//     console.log(key, value);
-//     gStyleState[key] = value;
-// }
-
-
-
-
-// function onChangeFontFamily(fontFamily) {
-//     // change current color
-//     gCtx.font = `30px ${fontFamily} `;
-
-//     // if there is a line selected
-//     if (gSelectedLine != -1) {
-//         // change its color
-//         changeFontFamily(gSelectedLine, fontFamily);
-//         // render the meme
-//         renderMeme();
-//     }
-// }
 
 function onEraseClick() {
     eraseEl();
