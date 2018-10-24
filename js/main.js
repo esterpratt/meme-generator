@@ -33,6 +33,7 @@ function initCanvas() {
 function onEnterText(txt) {
 
     var line = gMeme.selectedLine;
+
     // if there is no line selected
     if (!line) {
         var y = 20;
@@ -43,7 +44,13 @@ function onEnterText(txt) {
             let spaceBetweenLines = gCanvas.height / 10;
             y = prevY + spaceBetweenLines;
         }
-        gMeme.selectedLine = createLine(20, 20, y);
+
+        // get current values
+        var currentValues = getCurrentValues();
+        console.log(currentValues);
+        
+
+        gMeme.selectedLine = createLine(20, 20, y, currentValues.color, currentValues.font);
         line = gMeme.selectedLine;
     }
 
@@ -54,12 +61,24 @@ function onEnterText(txt) {
     } else {
         deleteLine(line);
         console.log(gMeme.txts);
-        
+
         // change to new line editor
         // addNewLine();
     }
 
     renderMeme();
+}
+
+function getCurrentValues() {
+    // get color
+    var elColor = document.querySelector('.colorInput');
+    var color = elColor.value;
+
+    // get fontFamily
+    var elFont = document.querySelector('.fontSeletor');
+    var font = elFont.value;
+
+    return {color, font};
 }
 
 function setTextWidth(line) {
@@ -90,18 +109,20 @@ function renderMeme() {
 }
 
 function onChangeTextColor(color) {
-    // TODO: change current color according to global state!
-    // gCtx.fillStyle = color;
-
     // if there is a line selected
-    // if (gMeme.selectedLine !== -1) {
-    //     console.log(selectedLine);
+    if (gMeme.selectedLine) {
+        // change its color
+        changeColor(gMeme.selectedLine, color);
+        // render the meme
+        renderMeme();
+    }
+}
 
-    // change its color
-    changeColor(gMeme.selectedLine, color);
-    // render the meme
-    renderMeme();
-    // }
+function onChangeFontFamily(font){
+    if (gMeme.selectedLine) {
+        changeFontFmaily(gMeme.selectedLine, font);
+        renderMeme();
+    }
 }
 
 function onClickCanvas(ev) {
@@ -132,31 +153,42 @@ function onClickCanvas(ev) {
 }
 
 function renderTextEditor(line) {
-    console.log(line);
     var elHeadline = document.querySelector('.editorHeadline');
+    var elColor = document.querySelector('.colorInput');
+    var elTextInput = document.querySelector('.textInput');
+    var elFont = document.querySelector('.fontSeletor');
+    
+    // if there is line selected
     if (line) {
         elHeadline.innerHTML = 'Edit Line';
+        // update values
+        elColor.value = line.color;
+        elTextInput.value = line.txt;
+        elFont.value = line.fontFamily;
     } else {
         elHeadline.innerHTML = 'New Line Editor';
+        elColor.value = '#000000';
+        elTextInput.value = '';
+        elFont.value = 'impact';
     }
 }
 
-function addNewLine() {
-    var elHeadline = document.querySelector('.editorHeadline');
-    // change headline
-    elHeadline.innerHTML = 'New Line Editor';
-    // if there is text on last line - add new line
-    // if (gMeme.txts[gMeme.txts.length - 1].txt) {
-    //     var y = 20;
-    //     // get y of last entered line
-    //     let prevLine = gMeme.txts[gMeme.txts.length - 1];
-    //     let prevY = prevLine.y;
-    //     let spaceBetweenLines = gCanvas.height / 10;
-    //     y = prevY + spaceBetweenLines;
+// function addNewLine() {
+//     var elHeadline = document.querySelector('.editorHeadline');
+//     // change headline
+//     elHeadline.innerHTML = 'New Line Editor';
+//     // if there is text on last line - add new line
+//     // if (gMeme.txts[gMeme.txts.length - 1].txt) {
+//     //     var y = 20;
+//     //     // get y of last entered line
+//     //     let prevLine = gMeme.txts[gMeme.txts.length - 1];
+//     //     let prevY = prevLine.y;
+//     //     let spaceBetweenLines = gCanvas.height / 10;
+//     //     y = prevY + spaceBetweenLines;
 
-    //     gMeme.selectedLine = createLine(20, 20, y);
-    // }
-}
+//     //     gMeme.selectedLine = createLine(20, 20, y);
+//     // }
+// }
 
 function markLine(line) {
     // get line
@@ -204,7 +236,7 @@ function onSelectImg(id) {
     initCanvas();
     createMeme(id);
     // create first empty line
-    gMeme.selectedLine = createLine(20, 20, 20);
+    // gMeme.selectedLine = createLine(20, 20, 20);
     renderMeme();
 }
 
@@ -227,9 +259,6 @@ function onChangeStyle(key, value) {
     gStyleState[key] = value;
 }
 
-// function onChangeFontFamily(value){
-//     console.log(value);
-// }
 
 // function onChangeFontSize(value){
 //     console.log(value);

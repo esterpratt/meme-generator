@@ -32,18 +32,18 @@ function createMeme(id) {
     gMeme = {
         selectedImgId: id,
         txts: [],
-        selectedLine: 0
+        selectedLine: undefined
     };
 }
 
-function createLine(size, x, y) {
+function createLine(size, x, y, color, fontFamily) {
     var line = {
         id: createId(),
         size,
         x,
         y,
-        color: 'black',
-        fontFamily: 'Arial',
+        color,
+        fontFamily,
         align: 'left',
         isSelected: true
     }
@@ -84,6 +84,10 @@ function getImageById(id) {
 
 function changeColor(line, color) {
     line.color = color;
+}
+
+function changeFontFmaily(line, font) {
+    line.fontFamily = font;
 }
 
 function downloadCanvas(elLink) {

@@ -58,16 +58,16 @@
             <!-- Text Modal -->
             <div class="text-edit-modal" style="1display:none">
                 <h2 class="editorHeadline" data-translate="texteditor">New Line Editor</h2>
-                    <input type="text" placeholder="Enter Text" oninput="onEnterText(this.value)" />
+                    <input class="textInput" type="text" placeholder="Enter Text" oninput="onEnterText(this.value)" />
                 <br>
                 <label>
                     <!-- Font Color -->
-                    <input type="color" value="#e66465" onchange="onChangeTextColor(this.value)">
+                    <input class="colorInput" type="color" value="#000000" onchange="onChangeTextColor(this.value)">
                 </label>
 
                 <label>
                     <!-- Font Family -->
-                    <select onchange="onChangeFontFamily(this.value)" style="font-size:20px;">
+                    <select class="fontSeletor" onchange="onChangeFontFamily(this.value)" style="font-size:20px;">
                         <option value="impact">Impact</option>
                         <option value="arial">Arial</option>
                         <option value="timesnewroman">Times New Roman</option>
