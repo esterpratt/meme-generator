@@ -98,7 +98,7 @@ function onClickCanvas(ev) {
 // INJECT UL-> LI IMAGES TO GALLERY DIV
 function renderGallery() {
     //TODO: get gallery function - instead of global var
-    var elGallery = document.querySelector('.gallery-imgs');
+    var elGallery = document.querySelector('.gallery-items');
     var images = gImgs;
     var strHtml = '<ul>';
     for (var i = 0; i < images.length; i++) {
