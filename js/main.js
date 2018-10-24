@@ -33,32 +33,32 @@ function initCanvas() {
 function onEnterText(txt) {
 
     var line = gMeme.selectedLine;
-
-    // line.size = 20;
-    // var y = line.y;
-
-    // if (gMeme.selectedLine === -1) {
-    //     let line = createLine(txt, size, x, y);
-    //     gMeme.selectedLine = line;
-    // } else {
-    if (txt) {
-        line.isSelected = true;
-    } else {
-        // delete from array
-        // find line index
-        if (gMeme.txts.length > 1) {
-            deleteLine(line);
-            // change to new line editor
-            addNewLine();
+    // if there is no line selected
+    if (!line) {
+        var y = 20;
+        // get y of last entered line
+        if (gMeme.txts.length) {
+            let prevLine = gMeme.txts[gMeme.txts.length - 1];
+            let prevY = prevLine.y;
+            let spaceBetweenLines = gCanvas.height / 10;
+            y = prevY + spaceBetweenLines;
         }
-        // line.size = 0;
-        // line.isSelected = false;
+        gMeme.selectedLine = createLine(20, 20, y);
+        line = gMeme.selectedLine;
     }
 
-    gMeme.selectedLine.txt = txt;
-    // }
+    if (txt) {
+        line.isSelected = true;
+        gMeme.selectedLine.txt = txt;
+        setTextWidth(gMeme.selectedLine);
+    } else {
+        deleteLine(line);
+        console.log(gMeme.txts);
+        
+        // change to new line editor
+        // addNewLine();
+    }
 
-    setTextWidth(gMeme.selectedLine);
     renderMeme();
 }
 
@@ -113,30 +113,32 @@ function onClickCanvas(ev) {
         return (mouseY < line.y && mouseY > line.y - line.size)
     });
 
-    var elHeadline = document.querySelector('.editorHeadline');
-
     // if clicked on different line - remove isSelected from other line
     if (gMeme.selectedLine !== line) {
         if (gMeme.selectedLine) {
             gMeme.selectedLine.isSelected = false;
         }
-    }
+        if (line) {
+            line.isSelected = true;
 
-    // if clicked on line
-    if (line) {
+        }
         gMeme.selectedLine = line;
-        line.isSelected = true;
-        // change headline
-        elHeadline.innerHTML = 'Line Editor';
-        // update Editor values
-
-
-        // if clicked outside
-    } else {
-        addNewLine();
     }
+
+    // render text editor according to line
+    renderTextEditor(line);
 
     renderMeme();
+}
+
+function renderTextEditor(line) {
+    console.log(line);
+    var elHeadline = document.querySelector('.editorHeadline');
+    if (line) {
+        elHeadline.innerHTML = 'Edit Line';
+    } else {
+        elHeadline.innerHTML = 'New Line Editor';
+    }
 }
 
 function addNewLine() {
@@ -144,16 +146,16 @@ function addNewLine() {
     // change headline
     elHeadline.innerHTML = 'New Line Editor';
     // if there is text on last line - add new line
-    if (gMeme.txts[gMeme.txts.length - 1].txt) {
-        var y = 20;
-        // get y of last entered line
-        let prevLine = gMeme.txts[gMeme.txts.length - 1];
-        let prevY = prevLine.y;
-        let spaceBetweenLines = gCanvas.height / 10;
-        y = prevY + spaceBetweenLines;
+    // if (gMeme.txts[gMeme.txts.length - 1].txt) {
+    //     var y = 20;
+    //     // get y of last entered line
+    //     let prevLine = gMeme.txts[gMeme.txts.length - 1];
+    //     let prevY = prevLine.y;
+    //     let spaceBetweenLines = gCanvas.height / 10;
+    //     y = prevY + spaceBetweenLines;
 
-        gMeme.selectedLine = createLine(20, 20, y);
-    }
+    //     gMeme.selectedLine = createLine(20, 20, y);
+    // }
 }
 
 function markLine(line) {
