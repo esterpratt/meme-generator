@@ -5,7 +5,8 @@ var gCtx;
 
 function init() {
     var imgs = createImgs();
-    renderGallery();
+    creatKeyWordsMap(imgs);
+    renderGallery(imgs);
 }
 
 function initCanvas() {
@@ -21,7 +22,7 @@ function onEnterText(txt) {
 
     var line = gMeme.selectedLine;
 
-    // if there is no line selected - create new line
+    // if there is no line selected - creates new line
     if (!line) {
         var y = 30;
         // get y of last entered line
@@ -36,20 +37,19 @@ function onEnterText(txt) {
             }
         }
 
-        // get current values
+        // gets current values
         var currentValues = getCurrentValues();
 
         gMeme.selectedLine = createLine(20, 20, y, currentValues.color, currentValues.font);
         line = gMeme.selectedLine;
     }
 
-    if (txt) {
-        line.isSelected = true;
-    } 
+    // if (txt) {
+    //     line.isSelected = true;
+    // } 
+
+    // update line's txt
     gMeme.selectedLine.txt = txt;
-    // else {
-    //     deleteLine(line);
-    // }
 
     renderMeme();
 }
@@ -68,7 +68,7 @@ function getCurrentValues() {
 
 function setTextWidth(line) {
     var txt = line.txt;
-    // TODO - Is it necessary to define gCtx.font??
+    // TODO - Is it necessary to define gCtx.font?
     gCtx.font = `${line.size}px ${line.fontFamily}`;
     var width = gCtx.measureText(txt).width;
     line.width = width;
@@ -89,11 +89,14 @@ function renderMeme(img) {
                 setTextWidth(line);
                 markLine(line);
             }
-            
+
             gCtx.font = `${line.size}px ${line.fontFamily}`;
-            
+            // paint inner text 
             gCtx.fillStyle = line.color;
             gCtx.fillText(line.txt, line.x, line.y);
+            // paint outline text
+            gCtx.strokeStyle = '#ffffff';
+            gCtx.strokeText(line.txt, line.x, line.y);
         }
     })
 }
@@ -130,9 +133,9 @@ function onClickCanvas(ev) {
     var mouseY = ev.clientY - gCanvas.offsetTop;
 
     // check if clicked on line
-    var line = gMeme.txts.find((line) => {
+    var line = gMeme.txts.find(line => {
         return (mouseY < line.y + 10 && mouseY > line.y - line.size - 5
-                && mouseX < line.width + line.x + 10 && mouseX > line.x - 10);
+            && mouseX < line.width + line.x + 10 && mouseX > line.x - 10);
     });
 
     // if clicked on different line
@@ -144,7 +147,7 @@ function onClickCanvas(ev) {
         // if a line was selected
         if (line) {
             line.isSelected = true;
-        // if no line selected - go to add new line editor
+            // if no line selected - go to add new line editor
         } else {
             onAddNewLine();
             // renderTextEditor();
@@ -161,7 +164,7 @@ function onClickCanvas(ev) {
 function onAddNewLine() {
     // if there is a line selected - remove selection and render text editor
     if (gMeme.selectedLine) {
-        
+
         // if line selected is empty - remove it from array
         if (gMeme.selectedLine.txt === '') {
             deleteLine(gMeme.selectedLine);
@@ -197,27 +200,29 @@ function renderTextEditor(line) {
 }
 
 function markLine(line) {
-    gCtx.beginPath();
-    gCtx.moveTo(line.x - 10, line.y - line.size - 5);
-    gCtx.lineTo(line.x + line.width + 10, line.y - line.size - 5);
-    gCtx.lineTo(line.x + line.width + 10, line.y + 10);
-    gCtx.lineTo(line.x - 10, line.y + 10);
-    gCtx.lineTo(line.x - 10, line.y - line.size - 5);
-    gCtx.strokeStyle = 'red';
-    gCtx.stroke();
-
+    // If line is not empty
+    if (line.txt) {
+        gCtx.beginPath();
+        gCtx.moveTo(line.x - 10, line.y - line.size - 5);
+        gCtx.lineTo(line.x + line.width + 10, line.y - line.size - 5);
+        gCtx.lineTo(line.x + line.width + 10, line.y + 10);
+        gCtx.lineTo(line.x - 10, line.y + 10);
+        gCtx.lineTo(line.x - 10, line.y - line.size - 5);
+        gCtx.strokeStyle = 'red';
+        gCtx.stroke();
+    }
 }
 
 
 // INJECT UL-> LI IMAGES TO GALLERY DIV
-function renderGallery() {
+function renderGallery(imgs) {
     //TODO: get gallery function - instead of global var
     var elGallery = document.querySelector('.gallery-items');
-    var images = gImgs;
+
     var strHtml = '<ul>';
-    for (var i = 0; i < images.length; i++) {
+    for (var i = 0; i < imgs.length; i++) {
         strHtml += `    <li class="gallery-img">
-                        <img src="${images[i].url}" data-id="${images[i].id}" onclick="onSelectImg('${images[i].id}')">
+                        <img src="${imgs[i].url}" data-id="${imgs[i].id}" onclick="onSelectImg('${imgs[i].id}')">
                         </li>`
     }
     strHtml += '</ul>'
@@ -261,9 +266,9 @@ function onMoveCanvasEl(direction) {
     moveCanvasEl(direction);
 }
 
-function onUploadImgBtn(ev){
+function onUploadImgBtn(ev) {
     // handleImageFromInput(ev, drawImgOnCanvas);
     handleImageFromInput(ev, uploadNewImg);
     // handleImageFromInput(ev, createImg);
-    
+
 }
