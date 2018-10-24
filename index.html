@@ -24,11 +24,11 @@
         </div>
         </header>
         <main>
-        <canvas id="canvas"></canvas>
+        <canvas id="canvas" onclick="onClickCanvas(event)"></canvas>
         </main>
         <aside>
            <h2 data-translate="headlayers">Layers</h2>
-            <ul>
+            <ul style="display: none">
                 <li class="layer layer1" onclick="underConstraction(this)"><span class="title">Text 1</span><span class="rename"><i class="far fa-edit"></i></span><span class="time">11:14:56</span><span class="delete"><i class="far fa-trash-alt"></i></span></li>
                 <li class="active layer layer1" onclick="underConstraction(this)"><span class="title">Text 1</span><span class="rename"><i class="far fa-edit"></i></span><span class="time">11:14:56</span><span class="delete"><i class="far fa-trash-alt"></i></span></li>
                 <li class="layer layer1" onclick="underConstraction(this)"><span class="title">Text 1</span><span class="rename"><i class="far fa-edit"></i></span><span class="time">11:14:56</span><span class="delete"><i class="far fa-trash-alt"></i></span></li>
@@ -38,9 +38,9 @@
                 <li class="layer layer1" onclick="underConstraction(this)"><span class="title">Text 1</span><span class="rename"><i class="far fa-edit"></i></span><span class="time">11:14:56</span><span class="delete"><i class="far fa-trash-alt"></i></span></li>
             
             </ul>
-        </aside>
-        <div class="tools" 1onclick="underConstraction(this)">
-            <div>
+
+            <!-- Text Modal -->
+            <div class="text-edit-modal">
                 <label>
                     <input type="text" placeholder="Add Line" onchange="onEnterText(this.value)" />
                 </label>
@@ -63,6 +63,9 @@
                     <!-- <input type="color" onchange="onChangeFontSize(this.value)"> -->
                 </label>
             </div>
+
+        </aside>
+        <div class="tools" 1onclick="underConstraction(this)">
 
             <a href="" class="btn text"><i class="fas fa-font"></i></a>
             <!-- <a href="" class="btn "><i class="fas fa-image"></i></a> -->

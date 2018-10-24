@@ -28,7 +28,9 @@ function init() {
     gSpaceBetweenLines = gCanvas.height / 15;
 
     // renderGallery()
-    // createMeme();
+    // TO DELETE LATER WHEN GALLERY SYNC
+    createMeme(1);
+    
 }
 
 // function getCanvasOffset() {
@@ -55,8 +57,8 @@ function onEnterText(txt) {
 // render meme
 function renderMeme() {
     var meme = getMeme();
-    var image = getImageById(meme.selectedImgId);
-    drawImgOnCanvas(image);
+    // var image = getImageById(meme.selectedImgId);
+    // drawImgOnCanvas(image);
 
     meme.txts.forEach((line) => {
         gCtx.font = `${line.size}px ${line.fontFamily}`;
