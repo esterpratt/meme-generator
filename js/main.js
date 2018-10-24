@@ -54,7 +54,7 @@ function onEnterText(txt) {
     } else {
         deleteLine(line);
         console.log(gMeme.txts);
-        
+
         // change to new line editor
         // addNewLine();
     }
@@ -248,3 +248,10 @@ function onChangeStyle(key, value) {
 //         renderMeme();
 //     }
 // }
+function onEraseClick() {
+    eraseEl();
+}
+
+function onMoveCanvasEl(direction) {
+    moveCanvasEl(direction);
+}
