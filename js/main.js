@@ -67,8 +67,8 @@ function setTextWidth(line) {
 function renderMeme() {
     gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
     var meme = getMeme();
-    // var image = getImageById(meme.selectedImgId);
-    // drawImgOnCanvas(image);
+    var image = getImageById(meme.selectedImgId);
+    drawImgOnCanvas(image);
 
     meme.txts.forEach((line) => {
         console.log(line.isSelected);
@@ -174,8 +174,8 @@ function onSelectImg(id) {
 
     // init canvas
     initCanvas();
-
-    createMeme(1);
+    console.log(id);
+    createMeme(id);
     renderMeme();
 }
 
