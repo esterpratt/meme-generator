@@ -36,7 +36,7 @@ function onEnterText(txt) {
 
     // if there is no line selected
     if (!line) {
-        var y = 20;
+        var y = 30;
         // get y of last entered line
         if (gMeme.txts.length) {
             let prevLine = gMeme.txts[gMeme.txts.length - 1];
@@ -47,9 +47,7 @@ function onEnterText(txt) {
 
         // get current values
         var currentValues = getCurrentValues();
-        console.log(currentValues);
         
-
         gMeme.selectedLine = createLine(20, 20, y, currentValues.color, currentValues.font);
         line = gMeme.selectedLine;
     }
@@ -126,22 +124,24 @@ function onChangeFontFamily(font){
 }
 
 function onClickCanvas(ev) {
-    // var mouseX = ev.clientX - gCanvas.offsetLeft;
+    var mouseX = ev.clientX - gCanvas.offsetLeft;
     var mouseY = ev.clientY - gCanvas.offsetTop;
 
     // check if clicked on line
     var line = gMeme.txts.find((line) => {
-        return (mouseY < line.y && mouseY > line.y - line.size)
+        return (mouseY < line.y + 10 && mouseY > line.y - line.size - 5
+                && mouseX < line.width + line.x + 10 && mouseX > line.x - 10);
     });
 
-    // if clicked on different line - remove isSelected from other line
+    // if clicked on different line
     if (gMeme.selectedLine !== line) {
+        // if there was a line selected before
         if (gMeme.selectedLine) {
             gMeme.selectedLine.isSelected = false;
         }
+        // if a line was selected
         if (line) {
             line.isSelected = true;
-
         }
         gMeme.selectedLine = line;
     }
@@ -173,33 +173,13 @@ function renderTextEditor(line) {
     }
 }
 
-// function addNewLine() {
-//     var elHeadline = document.querySelector('.editorHeadline');
-//     // change headline
-//     elHeadline.innerHTML = 'New Line Editor';
-//     // if there is text on last line - add new line
-//     // if (gMeme.txts[gMeme.txts.length - 1].txt) {
-//     //     var y = 20;
-//     //     // get y of last entered line
-//     //     let prevLine = gMeme.txts[gMeme.txts.length - 1];
-//     //     let prevY = prevLine.y;
-//     //     let spaceBetweenLines = gCanvas.height / 10;
-//     //     y = prevY + spaceBetweenLines;
-
-//     //     gMeme.selectedLine = createLine(20, 20, y);
-//     // }
-// }
-
 function markLine(line) {
-    // get line
-    // var line = getLineByIndex(lineIndex);
-
     gCtx.beginPath();
-    gCtx.moveTo(line.x - 10, line.y - line.size);
-    gCtx.lineTo(line.x + line.width + 10, line.y - line.size);
+    gCtx.moveTo(line.x - 10, line.y - line.size - 5);
+    gCtx.lineTo(line.x + line.width + 10, line.y - line.size - 5);
     gCtx.lineTo(line.x + line.width + 10, line.y + 10);
     gCtx.lineTo(line.x - 10, line.y + 10);
-    gCtx.lineTo(line.x - 10, line.y - line.size);
+    gCtx.lineTo(line.x - 10, line.y - line.size - 5);
     gCtx.strokeStyle = 'red';
     gCtx.stroke();
 
@@ -230,13 +210,9 @@ function onSelectImg(id) {
     document.querySelector('.gallery-items').style.display = 'none';
     // document.querySelector('main').style.display = 'block';
 
-    // gOffset = getCanvasOffset();
-
     // init canvas
     initCanvas();
     createMeme(id);
-    // create first empty line
-    // gMeme.selectedLine = createLine(20, 20, 20);
     renderMeme();
 }
 
