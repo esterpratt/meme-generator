@@ -2,38 +2,32 @@
 
 var gCanvas;
 var gCtx;
-<<<<<<< HEAD
-var gOffset;
-var gSelectedLineIdx = -1;
-
-
-// TODO:
-// font-family, font-size,l-r align, up-down align, delete
-
-=======
 // var gOffset;
 var gSpaceBetweenLines;
->>>>>>> 04c78ab3f5f21570f428b51a5c0aa7b9f7dc4c1d
 
 function init() {
     var imgs = createImgs();
-    
+
     gStyleState = {
-        color: '#000' ,
+        color: '#000',
         size: 20,
         fontFamily: 'arial',
-    }    
+    }
 
-
-    gCanvas = document.querySelector('#canvas');
+    gCanvas = document.getElementById('canvas');
     gCtx = gCanvas.getContext('2d');
 
-    gCanvas.width = window.innerWidth / 2;
-    gCanvas.height = window.innerHeight / 2;
+    var containerWidth = document.querySelector('main').offsetWidth;
+    var containerHeight = document.querySelector('main').offsetHeight;
+    gCanvas.width = containerWidth;
+    gCanvas.height = containerHeight;
+
+    console.log(containerWidth);
+    console.log(containerHeight);
 
     gSpaceBetweenLines = gCanvas.height / 15;
 
-    renderGallery()
+    // renderGallery()
     // createMeme();
 }
 
@@ -42,12 +36,6 @@ function init() {
 // }
 
 function onEnterText(txt) {
-<<<<<<< HEAD
-    // TODO: get the correct x and y
-    var size = 20;
-    var x = 0;
-    var y = size;
-=======
 
     var size = 20;
 
@@ -61,7 +49,6 @@ function onEnterText(txt) {
     }
 
     var x = 20;
->>>>>>> 04c78ab3f5f21570f428b51a5c0aa7b9f7dc4c1d
     var line = createLine(txt, size, x, y, gCtx.fillStyle, 'left');
     renderMeme();
 }
@@ -80,12 +67,7 @@ function renderMeme() {
 }
 
 function onChangeTextColor(color) {
-<<<<<<< HEAD
-    // change current color
-    onChangeStyle('color',color);
-=======
     // TODO: change current color according to global state!
->>>>>>> 04c78ab3f5f21570f428b51a5c0aa7b9f7dc4c1d
     gCtx.fillStyle = color;
 
     // if there is a line selected
@@ -100,7 +82,7 @@ function onChangeTextColor(color) {
 function onClickCanvas(ev) {
     // var mouseX = ev.clientX - gCanvas.offsetLeft;
     var mouseY = ev.clientY - gCanvas.offsetTop;
-    
+
     // check if clicked on line
     var lineIndex = gMeme.txts.findIndex((line) => {
         // TODO: draw lines around selected line
@@ -151,7 +133,7 @@ function onDownloadImage(el, ev) {
     downloadCanvas(el);
 }
 
-function onChangeStyle(key, value){
+function onChangeStyle(key, value) {
     console.log(key, value);
     gStyleState[key] = value;
 }
