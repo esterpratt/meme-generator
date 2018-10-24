@@ -47,7 +47,13 @@ function onEnterText(txt) {
 
         // get current values
         var currentValues = getCurrentValues();
+<<<<<<< HEAD
         
+=======
+        console.log(currentValues);
+
+
+>>>>>>> 36405c866ab751c2a4a732f51e22cfa327510d14
         gMeme.selectedLine = createLine(20, 20, y, currentValues.color, currentValues.font);
         line = gMeme.selectedLine;
     }
@@ -55,7 +61,7 @@ function onEnterText(txt) {
     if (txt) {
         line.isSelected = true;
         gMeme.selectedLine.txt = txt;
-        setTextWidth(gMeme.selectedLine);
+        // setTextWidth(gMeme.selectedLine);
     } else {
         deleteLine(line);
         console.log(gMeme.txts);
@@ -76,7 +82,7 @@ function getCurrentValues() {
     var elFont = document.querySelector('.fontSeletor');
     var font = elFont.value;
 
-    return {color, font};
+    return { color, font };
 }
 
 function setTextWidth(line) {
@@ -97,6 +103,7 @@ function renderMeme() {
     meme.txts.forEach(line => {
         if (line.txt) {
             if (line.isSelected) {
+                setTextWidth(line);
                 markLine(line);
             }
             gCtx.font = `${line.size}px ${line.fontFamily}`;
@@ -115,8 +122,17 @@ function onChangeTextColor(color) {
         renderMeme();
     }
 }
+function onChangeFontSize(value) {
+    if (value === 'plus') value = 5;
+    else if (value === 'minus') value = -5;
+    if (gMeme.selectedLine) {
+        changeFontSize(gMeme.selectedLine, value);
+        renderMeme();
+    }
 
-function onChangeFontFamily(font){
+}
+
+function onChangeFontFamily(font) {
     if (gMeme.selectedLine) {
         changeFontFmaily(gMeme.selectedLine, font);
         renderMeme();
@@ -157,7 +173,7 @@ function renderTextEditor(line) {
     var elColor = document.querySelector('.colorInput');
     var elTextInput = document.querySelector('.textInput');
     var elFont = document.querySelector('.fontSeletor');
-    
+
     // if there is line selected
     if (line) {
         elHeadline.innerHTML = 'Edit Line';
@@ -230,15 +246,12 @@ function onDownloadImage(el, ev) {
     downloadCanvas(el);
 }
 
-function onChangeStyle(key, value) {
-    console.log(key, value);
-    gStyleState[key] = value;
-}
-
-
-// function onChangeFontSize(value){
-//     console.log(value);
+// function onChangeStyle(key, value) {
+//     console.log(key, value);
+//     gStyleState[key] = value;
 // }
+
+
 
 
 // function onChangeFontFamily(fontFamily) {
@@ -253,6 +266,7 @@ function onChangeStyle(key, value) {
 //         renderMeme();
 //     }
 // }
+
 function onEraseClick() {
     eraseEl();
 }
