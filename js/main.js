@@ -176,8 +176,12 @@ function onSelectImg(id) {
 
 function returnToGallery(ev) {
     ev.preventDefault();
-    document.querySelector('.gallery-container').style.display = 'block';
-    document.querySelector('.meme-container').style.display = 'none';
+    document.body.classList.add('gallery');
+    document.querySelector('.gallery-items').style.display = 'inherit';
+
+    // document.body.sy
+    // document.querySelector('.gallery-items').style.display = 'block';
+    // document.querySelector('.meme-container').style.display = 'none';
 }
 
 function onDownloadImage(el, ev) {

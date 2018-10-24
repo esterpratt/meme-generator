@@ -70,6 +70,7 @@
                 <label>
                     Font Family
                     <select onchange="onChangeFontFamily(this.value)">
+                        <option value="impact">Impact</option>
                         <option value="arial">Arial</option>
                         <option value="timesnewroman">Times New Roman</option>
                         <option value="david">David</option>
@@ -96,15 +97,15 @@
             <a href="" class="btn"><i class="fas fa-grin-stars"></i></a>
             <a href="" class="btn"><i class="fas fa-eraser"></i></a>
         </div>
-        <div class="controller" onclick="underConstraction(this)">
-            <a href="" class="btn btn-control"><i class="fas fa-arrow-left"></i> <span data-translate="btnback" title="Back to gallery">Back</span></a>
-            <a href="" class="btn btn-control"><i class="fas fa-universal-access"></i> <span data-translate="btnacces"
+        <div class="controller">
+            <a href="" onclick="returnToGallery()" class="btn btn-control"><i class="fas fa-arrow-left"></i> <span data-translate="btnback" title="Back to gallery">Back</span></a>
+            <a href="" onclick="underConstraction(this)" class="btn btn-control"><i class="fas fa-universal-access"></i> <span data-translate="btnacces"
                     title="Change to accessibility mode">Accessibility</span></a>
-            <a href="" class="btn btn-control"><i class="fas fa-share-alt"></i> <span data-translate="btnshare" title="Share with friends">
+            <a href="" onclick="underConstraction(this)" class="btn btn-control"><i class="fas fa-share-alt"></i> <span data-translate="btnshare" title="Share with friends">
                     Share</span></a>
-            <a href="" class="btn btn-control"><i class="fas fa-file-upload"></i> <span data-translate="btnupload"
+            <a href="" onclick="underConstraction(this)" class="btn btn-control"><i class="fas fa-file-upload"></i> <span data-translate="btnupload"
                     title="Upload to server"> Upload</span></a>
-            <a href="" class="btn btn-control"><i class="fas fa-download"></i> <span data-translate="btndownload" title="Download image">
+            <a href="" onclick="onDownloadImage(this)" class="btn btn-control download"><i class="fas fa-download"></i> <span data-translate="btndownload" title="Download image">
                     Download</span></a>
         </div>
         <footer data-translate="headfooter">⛬ SHARE WITH LOVE ❤</footer>
