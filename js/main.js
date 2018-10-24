@@ -87,7 +87,7 @@ function onChangeTextColor(color) {
     gCtx.fillStyle = color;
 
     // if there is a line selected
-    if (gMeme.selectedLineIdx != -1) {
+    if (gMeme.selectedLineIdx !== -1) {
         // change its color
         changeColor(gMeme.selectedLineIdx, color);
         // render the meme
@@ -107,7 +107,7 @@ function onClickCanvas(ev) {
     });
 
     // if clicked on line - mark it
-    if (lineIndex != -1) {
+    if (lineIndex !== -1) {
         var line = getLineByIndex(lineIndex);
         line.isSelected = true;
     }
