@@ -35,22 +35,28 @@ function createMeme(id) {
     };
 }
 
-function createLine(val, size, x, y, color, align) {
+function createLine(val, size, x, y, color, fontFamily, align) {
     var line = {
         line: val,
         size: size,
         x: x,
         y: y,
         color: color,
-        fontFamily: 'Arial',
-        align: align
+        fontFamily: fontFamily,
+        align: align,
+        isSelected: true
     }
 
     gMeme.txts.push(line);
+    return line;
 }
 
 function getMeme() {
     return gMeme;
+}
+
+function getLineByIndex(lineIndex) {
+    return gMeme.txts[lineIndex];
 }
 
 function drawImgOnCanvas(image) {

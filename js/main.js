@@ -25,12 +25,12 @@ function init() {
     console.log(containerWidth);
     console.log(containerHeight);
 
-    gSpaceBetweenLines = gCanvas.height / 15;
+    gSpaceBetweenLines = gCanvas.height / 10;
 
     // renderGallery()
     // TO DELETE LATER WHEN GALLERY SYNC
     createMeme(1);
-    
+
 }
 
 // function getCanvasOffset() {
@@ -40,7 +40,7 @@ function init() {
 function onEnterText(txt) {
     var size = 20;
 
-    // get y and size of last entered line
+    // get y of last entered line
     if (gMeme.txts.length > 0) {
         var prevLine = gMeme.txts[gMeme.txts.length - 1];
         var prevY = prevLine.y;
@@ -50,17 +50,33 @@ function onEnterText(txt) {
     }
 
     var x = 20;
-    var line = createLine(txt, size, x, y, gCtx.fillStyle, 'left');
+    var line = createLine(txt, size, x, y, 'black', 'Ariel', 'left');
+    gMeme.selectedLineIdx = gMeme.txts.length - 1;
+    setTextWidth(line);
     renderMeme();
+}
+
+function setTextWidth(line) {
+    var txt = line.line;
+    // TODO - Is it necessary to define gCtx.font??
+    gCtx.font = `${line.size}px ${line.fontFamily}`;
+    var width = gCtx.measureText(txt).width;
+    line.width = width;
 }
 
 // render meme
 function renderMeme() {
+    gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
     var meme = getMeme();
     // var image = getImageById(meme.selectedImgId);
     // drawImgOnCanvas(image);
 
     meme.txts.forEach((line) => {
+        console.log(line.isSelected);
+        
+        if (line.isSelected) {
+            markLine(line);
+        }
         gCtx.font = `${line.size}px ${line.fontFamily}`;
         gCtx.fillStyle = line.color;
         gCtx.fillText(line.line, line.x, line.y);
@@ -91,7 +107,43 @@ function onClickCanvas(ev) {
         return (mouseY < line.y && mouseY > line.y - line.size)
     });
 
+    // if clicked on line - mark it
+    if (lineIndex != -1) {
+        var line = getLineByIndex(lineIndex);
+        line.isSelected = true;
+    }
+
+    // if clicked on different line - remove isSelected from other line
+    
+    if (gMeme.selectedLineIdx != lineIndex) {
+        var line = getLineByIndex(gMeme.selectedLineIdx);
+        console.log(line);
+        
+        if (line) {
+            line.isSelected = false;
+            console.log(line);
+            
+        }
+    }
+    
     gMeme.selectedLineIdx = lineIndex;
+
+    renderMeme();
+}
+
+function markLine(line) {
+    // get line
+    // var line = getLineByIndex(lineIndex);
+
+    gCtx.beginPath();
+    gCtx.moveTo(line.x - 10, line.y - line.size);
+    gCtx.lineTo(line.x + line.width + 10, line.y - line.size);
+    gCtx.lineTo(line.x + line.width + 10, line.y + 10);
+    gCtx.lineTo(line.x - 10, line.y + 10);
+    gCtx.lineTo(line.x - 10, line.y - line.size);
+    gCtx.strokeStyle = 'red';
+    gCtx.stroke();
+
 }
 
 
