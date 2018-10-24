@@ -9,11 +9,18 @@ body{
 /* HELPERS */
 .rtl {direction: rtl;text-align: right;}
 
-input[type=text] {
+input[type=number] {
+    font-size: 20px;
+    width: 40px;
+}
+
+    input[type=text] {
     border: none;
+    padding-left: 5px;
+    margin-bottom: 20px;
     background-color: transparent;
     font-size:30px;
-    width: 80%;
+    width: 90%;
     border-bottom: 2px solid red;
 }
 
@@ -23,6 +30,7 @@ input[type=text] {
 .grid-container {
     box-sizing: border-box;
     display: grid;
+    grid-template-columns: 100%;
     grid-template-rows: 80px 35%  10%  20% auto 40px;
     grid-template-areas:
     'header'
@@ -39,8 +47,10 @@ body.gallery aside, body.gallery .tools, body.gallery .controller, body.gallery 
     display: none;
 }
 body.gallery .grid-container {
+    grid-template-columns: 100%;
     /* box-sizing: border-box; */
     /* display: grid; */
+    width: 100%;
     grid-template-rows: 80px auto 40px;
     grid-template-areas:
     'header'
@@ -96,12 +106,18 @@ aside li.active {
     padding-top:20px;
     justify-content: space-evenly;
 }
+
+.text-edit-modal label.arrows{ 
+    font-size: 30px;
+    display: flex;
+    justify-content: space-evenly;
+}
 .text-edit-modal label{
-    padding: 15px ; 
-    width: 90%;
+    padding: 15px;
+    /* width: 90%; */
     color: black;
     /* text-align: center; */
-    display: block;
+    display: inline;
 }
 
 /* .text-edit-modal input:not(:first-child), select { */
@@ -109,13 +125,20 @@ aside li.active {
 /* } */
 
 
-.gallery-items {grid-area: gallery}
-.gallery-items ul {list-style-type: none;margin: 0 auto;width: fit-content;}
+.gallery-items {grid-area: gallery;}
+.gallery-items ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap:3px;
+    list-style-type: none;
+    align-items: center;
+    justify-content: center;
+}
 .gallery-items ul>li {display: inline}
 .gallery-items ul li img {
-    /* max-width: 100%; */
     max-width: 200px;
     min-width: 200px;
+    /* width: 40%; */
     height: 150px;
     object-fit: cover;
 }
@@ -123,7 +146,7 @@ aside li.active {
 .tools {
     grid-area: tools; 
     display:flex;
-    justify-content: flex-end;
+    justify-content: space-around;
     align-items: center;
     border-radius: 15px;
     margin: 0 5px;
@@ -163,7 +186,7 @@ footer{
 @media (min-width: 786px){
     header .title h1 {font-size: 56px;line-height: 100px;}
     aside {box-shadow: inset 0px 50px 0px 0px rgba(0,0,0,1); border: 1px black solid}
-    aside h2{display: block;color:white;font-size:30px;line-height: 30px; padding:10px;}
+    aside h2{display: block;color:white;font-size:30px;line-height: 30px; padding:10px;margin-bottom: 20px;}
     aside li {font-size:1.2em}
     aside li span.time{display:inherit}
     .grid-container {    

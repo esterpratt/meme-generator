@@ -30,7 +30,7 @@
             <canvas id="canvas" onclick="onClickCanvas(event)"></canvas>
         </main>
         <aside>
-            <h2 data-translate="headlayers" style="display: none">Layers</h2>
+            <h2 data-translate="headlayers" style="display:none">Layers</h2>
             <ul style="display: none">
                 <li class="layer" onclick="underConstraction(this)"><span class="title">Text 1</span><span class="rename"><i
                             class="far fa-edit"></i></span><span class="time">11:14:56</span><span class="delete"><i
@@ -56,20 +56,18 @@
             </ul>
 
             <!-- Text Modal -->
-            <div class="text-edit-modal">
-                <h2 class="editorHeadline" data-translate="texteditor">New Line Editor</h2>
+            <div class="text-edit-modal" style="1display:none">
+                <h2 data-translate="texteditor">New Line Editor</h2>
+                    <input type="text" placeholder="Enter Text" oninput="onEnterText(this.value)" />
+                <br>
                 <label>
-                    <input type="text" placeholder="text line" oninput="onEnterText(this.value)" />
+                    <!-- Font Color -->
+                    <input type="color" value="#e66465" onchange="onChangeTextColor(this.value)">
                 </label>
 
                 <label>
-                    Font Color
-                    <input type="color" value="#000000" onchange="onChangeTextColor(this.value)">
-                </label>
-
-                <label>
-                    Font Family
-                    <select onchange="onChangeFontFamily(this.value)">
+                    <!-- Font Family -->
+                    <select onchange="onChangeFontFamily(this.value)" style="font-size:20px;">
                         <option value="impact">Impact</option>
                         <option value="arial">Arial</option>
                         <option value="timesnewroman">Times New Roman</option>
@@ -78,13 +76,15 @@
                 </label>
 
                 <label>
-                    Font Size<input type="range" name="font-size" id="" onchange="onChangeFontSize(this.value)">
+                    <!-- Font Size -->
+                    <input type="number" value="30" maxlength="3" size="1" name="font-size" onchange="onChangeFontSize(this.value)">
                 </label>
-                <div class="buttons">
-                    <button>Approve/EDIT</button>
-                    <button>Close</button>
-
-                </div>
+                <label class="arrows">
+                        <i class="fas fa-arrow-right"></i>
+                        <i class="fas fa-arrow-left"></i>
+                        <i class="fas fa-arrow-up"></i>
+                        <i class="fas fa-arrow-down"></i>
+                </label>
             </div>
 
         </aside>
