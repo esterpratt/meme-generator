@@ -7,23 +7,27 @@ var gSpaceBetweenLines;
 
 function init() {
     var imgs = createImgs();
-    
+
     gStyleState = {
-        color: '#000' ,
+        color: '#000',
         size: 20,
         fontFamily: 'arial',
-    }    
+    }
 
-
-    gCanvas = document.querySelector('#canvas');
+    gCanvas = document.getElementById('canvas');
     gCtx = gCanvas.getContext('2d');
 
-    gCanvas.width = window.innerWidth / 2;
-    gCanvas.height = window.innerHeight / 2;
+    var containerWidth = document.querySelector('main').offsetWidth;
+    var containerHeight = document.querySelector('main').offsetHeight;
+    gCanvas.width = containerWidth;
+    gCanvas.height = containerHeight;
+
+    console.log(containerWidth);
+    console.log(containerHeight);
 
     gSpaceBetweenLines = gCanvas.height / 15;
 
-    renderGallery()
+    // renderGallery()
     // createMeme();
 }
 
@@ -32,7 +36,6 @@ function init() {
 // }
 
 function onEnterText(txt) {
-    console.log(txt);
     var size = 20;
 
     // get y and size of last entered line
@@ -78,7 +81,7 @@ function onChangeTextColor(color) {
 function onClickCanvas(ev) {
     // var mouseX = ev.clientX - gCanvas.offsetLeft;
     var mouseY = ev.clientY - gCanvas.offsetTop;
-    
+
     // check if clicked on line
     var lineIndex = gMeme.txts.findIndex((line) => {
         // TODO: draw lines around selected line
@@ -129,7 +132,7 @@ function onDownloadImage(el, ev) {
     downloadCanvas(el);
 }
 
-function onChangeStyle(key, value){
+function onChangeStyle(key, value) {
     console.log(key, value);
     gStyleState[key] = value;
 }
