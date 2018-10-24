@@ -1,5 +1,6 @@
 'use strict';
 
+var gStyleState;
 var gImgs;
 var gMeme;
 

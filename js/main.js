@@ -3,10 +3,22 @@
 var gCanvas;
 var gCtx;
 var gOffset;
-var gSelectedLineIdx = 0;
+var gSelectedLineIdx = -1;
+
+
+// TODO:
+// font-family, font-size,l-r align, up-down align, delete
+
 
 function init() {
     var imgs = createImgs();
+    
+    gStyleState = {
+        color: '#000' ,
+        size: 20,
+        fontFamily: 'arial',
+    }    
+
 
     gCanvas = document.querySelector('#canvas');
     gCtx = gCanvas.getContext('2d');
@@ -24,15 +36,10 @@ function getCanvasOffset() {
 
 function onEnterText(txt) {
     // TODO: get the correct x and y
-<<<<<<< HEAD
     var size = 20;
     var x = 0;
     var y = size;
     var line = createLine(txt, size, x, y, gCtx.fillStyle, 'left');
-=======
-
-    var line = createLine(txt, 20, 0, 5, gCtx.fillStyle, 'left');
->>>>>>> 73742f7dee4135c365ef8b4093e30f827847f062
     renderMeme();
 }
 
@@ -50,6 +57,7 @@ function renderMeme() {
 
 function onChangeTextColor(color) {
     // change current color
+    onChangeStyle('color',color);
     gCtx.fillStyle = color;
 
     // if there is a line selected
@@ -110,6 +118,32 @@ function returnToGallery(ev) {
 }
 
 function onDownloadImage(el, ev) {
-    // console.log(el);
     downloadCanvas(el);
 }
+
+function onChangeStyle(key, value){
+    console.log(key, value);
+    gStyleState[key] = value;
+}
+
+// function onChangeFontFamily(value){
+//     console.log(value);
+// }
+
+// function onChangeFontSize(value){
+//     console.log(value);
+// }
+
+
+// function onChangeFontFamily(fontFamily) {
+//     // change current color
+//     gCtx.font = `30px ${fontFamily} `;
+
+//     // if there is a line selected
+//     if (gSelectedLineIdx != -1) {
+//         // change its color
+//         changeFontFamily(gSelectedLineIdx, fontFamily);
+//         // render the meme
+//         renderMeme();
+//     }
+// }

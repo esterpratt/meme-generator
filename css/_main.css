@@ -16,6 +16,8 @@ header {
     grid-area: header;
 }
 
+header h1 {text-align: center;}
+
 .gallery-container {
     grid-area: gallery;
 }
