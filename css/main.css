@@ -29,7 +29,7 @@ input[type=number] {
     box-sizing: border-box;
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 80px auto 10%  20% auto 40px;
+    grid-template-rows: 80px 40% 10%  20% auto 40px;
     grid-template-areas:
     'header'
     'main'
@@ -188,6 +188,8 @@ footer{
 
 @media (min-width: 786px){
     header .title h1 {font-size: 56px;line-height: 100px;}
+    main {display:flex}
+    canvas {align-self: center}
     aside {box-shadow: inset 0px 50px 0px 0px rgba(0,0,0,1); border: 1px black solid}
     aside h2{display: block;color:white;font-size:30px;line-height: 30px; padding:10px;margin-bottom: 20px;}
     aside li {font-size:1.2em}

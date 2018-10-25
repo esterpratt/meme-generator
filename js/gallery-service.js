@@ -5,7 +5,7 @@ var gKeyWordsMap;
 
 function createImgs() {
     gImgs = [
-        createImg('img/003.jpg', ['trump', 'happy']),
+        createImg('https://i.kym-cdn.com/photos/images/newsfeed/000/002/110/longcat.jpg', ['trump', 'happy']),
         createImg('img/004.jpg', ['sad']),
         createImg('img/005.jpg', ['happy']),
         createImg('img/006.jpg', ['happy']),
@@ -60,24 +60,12 @@ function drawImgOnCanvas(image) {
     var imageRatio = image.width / image.height;
     var canvasComputed = {};
     canvasComputed = {width: gCanvas.width ,height: gCanvas.width/imageRatio};
-    console.log('image width:',image.width,'image height:', image.height, 'image ratio', imageRatio);
-    console.log( 'gCanvas.width', gCanvas.width, 'gCanvas.height', gCanvas.height, 'canvas ratio', gCanvas.width/gCanvas.height); 
-    
-  
-    // console.log(canvasComputed.height);
-   
-    // if ( canvasComputed.height > gCanvas.height ) {
-        // OVERFLOW - Y - NEED TO BE FIX
-
-        // canvasComputed.height = gCanvas.height;
-        // gCanvas.width = gCanvas.height*imageRatio;
-        
-    // } else {
-        // }
-        // gCtx.drawImage(image, 0, 0, gCanvas.width, gCanvas.height);
-    gCanvas = canvasComputed;
+    // console.log('image width:',image.width,'image height:', image.height, 'image ratio', imageRatio);
+    // console.log( 'gCanvas.width', gCanvas.width, 'gCanvas.height', gCanvas.height, 'canvas ratio', gCanvas.width/gCanvas.height); 
+    if (canvasComputed.height < gCanvas.height) {
+        gCanvas.height = canvasComputed.height;
+    }
     gCtx.drawImage(image, 0, 0, canvasComputed.width, canvasComputed.height);
-    
 }
 
 function getImageById(id) {
