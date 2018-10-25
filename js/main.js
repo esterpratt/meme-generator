@@ -329,6 +329,8 @@ function onDelete() {
     } else {
         eraseAll();
     }
+
+    
 }
 
 function onCancelDelete() {
