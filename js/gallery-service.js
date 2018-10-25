@@ -58,16 +58,26 @@ function updateKeyWordsMap(key) {
 
 function drawImgOnCanvas(image) {
     var imageRatio = image.width / image.height;
-
-    console.log(image.width);
-    console.log(image.height);
-    console.log(imageRatio);
+    var canvasComputed = {};
+    canvasComputed = {width: gCanvas.width ,height: gCanvas.width/imageRatio};
+    console.log('image width:',image.width,'image height:', image.height, 'image ratio', imageRatio);
+    console.log( 'gCanvas.width', gCanvas.width, 'gCanvas.height', gCanvas.height, 'canvas ratio', gCanvas.width/gCanvas.height); 
     
+  
+    // console.log(canvasComputed.height);
+   
+    // if ( canvasComputed.height > gCanvas.height ) {
+        // OVERFLOW - Y - NEED TO BE FIX
 
-    // HANDLE THE HEIGHT AND WIDTH - RESPONSIVE
-    // gCtx.drawImage(image, 0, 0, gCanvas.width, gCanvas.height);
-    gCanvas.height = gCanvas.width/imageRatio;
-    gCtx.drawImage(image, 0, 0, gCanvas.width, gCanvas.width/imageRatio);
+        // canvasComputed.height = gCanvas.height;
+        // gCanvas.width = gCanvas.height*imageRatio;
+        
+    // } else {
+        // }
+        // gCtx.drawImage(image, 0, 0, gCanvas.width, gCanvas.height);
+    gCanvas = canvasComputed;
+    gCtx.drawImage(image, 0, 0, canvasComputed.width, canvasComputed.height);
+    
 }
 
 function getImageById(id) {
