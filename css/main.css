@@ -29,11 +29,11 @@ input[type=number] {
     box-sizing: border-box;
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 80px 40% 10%  20% auto 40px;
+    grid-template-rows: 55px 40%   30% auto 40px;
     grid-template-areas:
     'header'
     'main'
-    'tools'
+    /* 'tools' */
     'aside'
     'controller'
     'footer';
@@ -68,7 +68,7 @@ header {
     justify-content: space-evenly;
     background: black;
     border-radius: 0px;
-    line-height: 80px;
+    line-height: 55px;
     box-shadow: inset 0px -5px 0px 0px rgb(218, 81, 47);
 }
 header .title h1 {font-size:36px;padding: 0 15px;margin:0px;}
@@ -160,11 +160,10 @@ aside li.active {
 .controller {
     grid-area: controller; 
     display: flex;
-    flex-wrap: wrap;
-    align-items: flex-end;
-    /* align-items: flex-start; */
+    flex-wrap: nowrap;
+    align-items: center;
     justify-content: space-evenly;
-    /* background-1color: rgba(255, 255, 255, 0.8); */
+    text-align: center;
     border-radius: 15px;
     margin: 0 5px;    
 }
