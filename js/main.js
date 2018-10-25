@@ -1,6 +1,7 @@
 'use strict';
 
 var gCanvas;
+var gMoving = false;
 var gCtx;
 
 function init() {
@@ -144,7 +145,35 @@ function onChangeFontFamily(font) {
     }
 }
 
+function drag(ev) {
+    var mouseX = ev.clientX - gCanvas.offsetLeft;
+    var mouseY = ev.clientY - gCanvas.offsetTop;
+
+    gMeme.selectedLine.x = mouseX;
+    gMeme.selectedLine.y = mouseY;
+    renderMeme()
+    console.log(ev,'hi')
+}
+
+// function drag(ev) {
+//     var mouseX = ev.clientX - gCanvas.offsetLeft;
+//     var mouseY = ev.clientY - gCanvas.offsetTop;
+//     gMeme.selectedLine.x = mouseX;
+//     gMeme.selectedLine.y = mouseY;
+//     renderMeme()
+//     console.log(ev,'hi')
+// }
+
+function onMouseUp(ev) {
+    if (gMoving) {
+        gCanvas.removeEventListener('mousemove', drag,false);
+        gMoving = false;
+        console.log(ev)
+    }
+}
+
 function onClickCanvas(ev) {
+
     var mouseX = ev.clientX - gCanvas.offsetLeft;
     var mouseY = ev.clientY - gCanvas.offsetTop;
 
@@ -170,7 +199,14 @@ function onClickCanvas(ev) {
         }
         gMeme.selectedLine = line;
     }
+    
+    if (line) {
 
+        gCanvas.addEventListener('mousemove', drag,false);
+        gMoving = true;
+    
+        // console.log('line',line);
+    }
     // render text editor according to line
     renderTextEditor(line);
 
@@ -249,7 +285,7 @@ function renderKeywords() {
 
     var strHtmls = keywords.map(keyword => {
         let keywordSize = gKeyWordsMap[keyword] * 2 + 10;
-        
+
         if (keywordSize > 50) {
             keywordSize = 50;
         }
@@ -306,7 +342,7 @@ function returnToGallery(ev) {
 }
 
 function onDownloadImage(el, ev) {
-    console.log(el,ev);
+    console.log(el, ev);
     downloadCanvas(el);
 }
 
@@ -336,7 +372,7 @@ function onDelete() {
     } else {
         eraseAll();
     }
-    
+
     renderTextEditor();
 }
 

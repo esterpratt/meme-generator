@@ -64,7 +64,8 @@ function downloadCanvas(elLink) {
         renderMeme();
     }
     // console.log(elLink);
-    let canvas = document.createElement("canvas");
+    let canvas = document.getElementById('canvas');
+    // console.log(canvas);
     // let context = canvas.getContext("2d");
     elLink.href = canvas.toDataURL();
     elLink.download = 'meme.jpg';
