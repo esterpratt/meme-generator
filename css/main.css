@@ -177,6 +177,10 @@ aside li.active {
     background-color: rgb(218, 81, 47);
 }
 
+.keyword {
+    cursor: pointer;
+}
+
 .gallery-items ul {
     display: grid;
     text-align: center;

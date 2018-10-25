@@ -254,7 +254,7 @@ function renderKeywords() {
             keywordSize = 50;
         }
         return `
-        <li onclick="onKeywordSelect('${keyword}')" style="font-size: ${keywordSize}px">
+        <li class="keyword" onclick="onKeywordSelect('${keyword}')" style="font-size: ${keywordSize}px">
             ${keyword}
         </li>
         `;
