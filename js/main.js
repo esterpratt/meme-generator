@@ -4,9 +4,21 @@ var gCanvas;
 var gCtx;
 
 function init() {
-    var imgs = createImgs();
-    creatKeyWordsMap(imgs);
-    renderGallery(imgs);
+    // init imgs
+    createImgs();
+    
+    // init keywords
+    gKeyWordsMap = getFromStorage('keywordsMap');
+    if (!gKeyWordsMap) {
+        creatKeyWordsMap();
+    }
+
+    initGallery();
+}
+
+function initGallery() {
+    renderKeywords();
+    renderGallery(gImgs);
 }
 
 function initCanvas() {
@@ -94,7 +106,9 @@ function renderMeme(img) {
             // paint inner text 
             gCtx.fillStyle = line.color;
             gCtx.fillText(line.txt, line.x, line.y);
-            // paint outline text
+            
+            // if impact - paint outline text
+            if (line.fontFamily)
             gCtx.strokeStyle = '#ffffff';
             gCtx.strokeText(line.txt, line.x, line.y);
         }
@@ -213,6 +227,9 @@ function markLine(line) {
     }
 }
 
+function renderKeywords() {
+
+}
 
 // INJECT UL-> LI IMAGES TO GALLERY DIV
 function renderGallery(imgs) {
@@ -248,6 +265,7 @@ function returnToGallery(ev) {
     // ev.preventDefault();
     document.body.classList.add('gallery');
     document.querySelector('.gallery-items').style.display = 'inherit';
+    initGallery();
 
     // document.body.sy
     // document.querySelector('.gallery-items').style.display = 'block';
