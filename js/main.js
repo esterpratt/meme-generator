@@ -14,6 +14,7 @@ function init() {
         saveToStorage('keywordsMap', gKeyWordsMap)
     }
 
+    renderKeywordsDatalist();
     initGallery();
 }
 
@@ -226,6 +227,20 @@ function markLine(line) {
         gCtx.strokeStyle = 'red';
         gCtx.stroke();
     }
+}
+
+function renderKeywordsDatalist() {
+    var elDatalist = document.querySelector('#keywords-list');
+
+    var keywords = Object.keys(gKeyWordsMap);
+
+    var strHtmls = keywords.map(keyword => {
+        return `
+                <option value="${keyword}">
+               `;
+    });
+
+    elDatalist.innerHTML = strHtmls.join('');
 }
 
 function renderKeywords() {
