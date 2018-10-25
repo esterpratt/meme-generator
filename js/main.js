@@ -248,8 +248,13 @@ function renderKeywords() {
     var keywords = Object.keys(gKeyWordsMap);
 
     var strHtmls = keywords.map(keyword => {
+        let keywordSize = gKeyWordsMap[keyword] * 2 + 10;
+        
+        if (keywordSize > 50) {
+            keywordSize = 50;
+        }
         return `
-        <li onclick="onKeywordSelect('${keyword}')" style="font-size: ${gKeyWordsMap[keyword] * 10}px">
+        <li onclick="onKeywordSelect('${keyword}')" style="font-size: ${keywordSize}px">
             ${keyword}
         </li>
         `;

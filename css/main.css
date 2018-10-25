@@ -148,8 +148,27 @@ aside li.active {
 
 .gallery-container {grid-area: gallery;}
 
-.keywords-container ul {display: flex; flex-wrap: wrap; flex-direction: row;align-items: center;text-align: center;justify-content: center;}
-.keywords-container ul li {display: inline;color:black;padding:  10px;}
+.keywords-container ul {
+    display: flex; 
+    flex-wrap: wrap; 
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+.keywords-container ul li {
+    display: inline;
+    color:black;
+    padding: 10px;
+}
+
+.keywords {
+    padding: 5px 0;
+    margin: 10px 0;
+    width: 100%;
+    background-color: rgb(218, 81, 47);
+}
 
 .gallery-items ul {
     display: grid;
@@ -160,6 +179,7 @@ aside li.active {
     justify-content: center;
 }
 
+<<<<<<< HEAD
 @media (max-width:400px){
 .gallery-items ul {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -167,6 +187,8 @@ aside li.active {
 }
 
 
+=======
+>>>>>>> 78efceab40125ebcde1ddccd1b41a4fff116a5e1
 .gallery-items ul>li {display: inline}
 .gallery-items ul li img {
     max-width: 200px;

@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Internet meme Generator</title>
+    <link rel="stylesheet" href="css/helpers.css">
+    <link rel="stylesheet" href="css/eraseModal.css">
     <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/_eraseModal.css">
-    <link rel="stylesheet" href="css/_helpers.css">
 
 </head>
 
@@ -26,13 +26,13 @@
             </div>
         </header>
         <div class="gallery-container">
-            <div class="keywords-container">
+            <div class="keywords-container flex flex-column align-center">
                 <input list="keywords-list" placeholder="Enter search word" onchange="onKeywordSelect(value)">
                 <datalist id="keywords-list">
                     <!-- INJECT WITH JS -->
                 </datalist>
 
-                <ul id="keywords">
+                <ul id="keywords" class="keywords">
                     <!-- LI - INJECT WITH JS -->
                 </ul>
 
@@ -45,7 +45,7 @@
             <canvas id="canvas" onclick="onClickCanvas(event)" style="direction:ltr"></canvas>
         </main>
         <aside>
-            <h2 data-translate="headlayers" style="display:none">Layers</h2>
+            <!-- <h2 data-translate="headlayers" style="display:none">Layers</h2>
             <ul style="display: none">
                 <li class="layer" onclick="underConstraction(this)"><span class="title">Text 1</span><span class="rename"><i
                             class="far fa-edit"></i></span><span class="time">11:14:56</span><span class="delete"><i
@@ -68,7 +68,7 @@
                 <li class="layer" onclick="underConstraction(this)"><span class="title">Text 1</span><span class="rename"><i
                             class="far fa-edit"></i></span><span class="time">11:14:56</span><span class="delete"><i
                             class="far fa-trash-alt"></i></span></li>
-            </ul>
+            </ul> -->
 
             <!-- Text Editor -->
             <h2 class="editorHeadline" data-translate="texteditor">New Line Editor</h2>
