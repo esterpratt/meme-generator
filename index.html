@@ -28,11 +28,13 @@
                 <input list="keywords-list" onchange="onKeywordSelect(value)">
                 <datalist id="keywords-list">
                         <!-- INJECT WITH JS -->
+                    <option value="all">
                     <option value="some-key">
                     <option value="some-key">
                 </datalist>
 
                 <ul id="keywords">
+                    <li onclick="onKeywordSelect(this.innerText)">all</li>
                     <li onclick="onKeywordSelect(this.innerText)">very happy</li>
                     <li style="font-size: 15px">happy</li>
                     <li style="font-size: 25px">happy</li>
