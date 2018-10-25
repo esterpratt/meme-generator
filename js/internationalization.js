@@ -16,6 +16,9 @@ var gTranslations = {
         btnupload: 'Upload',
         btndownload: 'Download',
         headfooter: '⛬ SHARE WITH LOVE ❤',
+        modalheadline: 'Are you sure you want to delete all?',
+        deletebtn: 'Delete',
+        deletebtncancel: 'Cancel',
 
     },
     heb: {
@@ -29,6 +32,9 @@ var gTranslations = {
         btnupload: 'העלאה',
         btndownload: 'הורדה',
         headfooter: '⛬  שתפו באהבה  ❤',
+        modalheadline: 'האם אתה בטוח שתרצה למחוק?',
+        deletebtn: 'מחק',
+        deletebtncancel: 'ביטול',
     }
 }
 
@@ -52,12 +58,20 @@ var gTranslationsTitles = {
 function getUserLang() {
     return gLanguage;
 }
+var gTranslationsPlaceholder = {
+    eng: {
+        inputtext: 'Enter Text',
+    },
+    heb: {
+        inputtext: 'הזן טקסט',    }
+}
 
 function changeLanguage(lang) {
     // console.log(lang);
     gLanguage = lang;
     translateElements(lang);
     translateElementsTitle(lang);
+    translateElementsPlaceholder(lang);
     if (gTranslations[lang].isRtl) document.body.classList.add('rtl');
     else document.body.classList.remove('rtl');
 }
@@ -68,7 +82,7 @@ function translateElements(lang) {
     for (var i = 0; i < translateEls.length; i++) {
         var translateEl = translateEls[i];
         var translate = translateEl.dataset.translate;
-        
+
         // console.log(translateEl.dataset.translate);
         translateEl.innerText = gTranslations[lang][translate];
     }
@@ -81,17 +95,24 @@ function translateElementsTitle(lang) {
     for (var i = 0; i < translateEls.length; i++) {
         var translateEl = translateEls[i];
         if (translateEl.title) {
-        var translate = translateEl.dataset.translate;
-        translateEl.title = gTranslationsTitles[lang][translate];
+            var translate = translateEl.dataset.translate;
+            translateEl.title = gTranslationsTitles[lang][translate];
 
-    }
-        
+        }
+
         // console.log(translateEl.dataset.translate);
     }
     //render all
 }
 
-// var iconActionTitle = document.querySelectorAll('.btn.btn-control');
-
-// console.log('here',iconActionTitle);
-// console.log('title',iconActionTitle[0].title);
+function translateElementsPlaceholder(lang) {
+    // select all the element with data attribute - for each - translate placeholder;
+    var translateEls = document.querySelectorAll('[data-translate]');
+    for (var i = 0; i < translateEls.length; i++) {
+        var translateEl = translateEls[i];
+        if (translateEl.placeholder) {
+            var translate = translateEl.dataset.translate;
+            translateEl.placeholder = gTranslationsPlaceholder[lang][translate];
+        }
+    }
+}
