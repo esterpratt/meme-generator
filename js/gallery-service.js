@@ -6,15 +6,15 @@ var gCurrKeyword;
 
 function createImgs() {
     gImgs = [
-        createImg('https://i.kym-cdn.com/photos/images/newsfeed/000/002/110/longcat.jpg', ['trump', 'happy']),
-        createImg('img/004.jpg', ['sad']),
+        createImg('https://i.kym-cdn.com/photos/images/newsfeed/000/002/110/longcat.jpg', ['trump', 'cat', 'happy']),
+        createImg('img/004.jpg', ['sad', 'dog']),
         createImg('img/005.jpg', ['happy']),
-        createImg('img/006.jpg', ['happy']),
+        createImg('img/006.jpg', ['happy', 'dog']),
         createImg('img/2.jpg', ['sad']),
-        createImg('img/5.jpg', ['happy']),
-        createImg('img/004.jpg', ['happy']),
-        createImg('img/004.jpg', ['happy']),
-        createImg('img/004.jpg', ['sad']),
+        createImg('img/5.jpg', ['happy', 'kid']),
+        createImg('img/004.jpg', ['happy', 'sleep']),
+        createImg('img/004.jpg', ['happy', 'angry']),
+        createImg('img/004.jpg', ['sad', 'exited']),
         createImg('img/004.jpg', ['happy']),
         createImg('img/004.jpg', ['happy']),
         createImg('img/004.jpg', ['happy']),
