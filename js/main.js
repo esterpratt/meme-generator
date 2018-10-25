@@ -197,7 +197,6 @@ function drag(ev) {
     gPrevPos.x = mouseX;
     gPrevPos.y = mouseY;
 
-    var newX = mouseX - (mouseX - gMeme.selectedLine.x)
     renderMeme();
 }
 
@@ -425,7 +424,6 @@ function mobileMove() {
 
     function handleMove(ev) {
         ev.preventDefault();
-        var ctx = el.getContext("2d");
 
         if (gMeme.selectedLine) {
             var mouseX = ev.changedTouches[0].clientX - gCanvas.offsetLeft;
@@ -433,7 +431,7 @@ function mobileMove() {
 
             gMeme.selectedLine.x = mouseX;
             gMeme.selectedLine.y = mouseY;
-            renderMeme()
+            renderMeme();
         }
     }
 }
