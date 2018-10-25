@@ -12,7 +12,7 @@
 
 </head>
 
-<body onload="init()" class="gallery">
+<body onload="init()" onmouseup="onMouseUp()" class="gallery">
     <div class="grid-container">
         <header>
             <div class="title">
@@ -42,7 +42,7 @@
             </div>
         </div>
         <main>
-            <canvas id="canvas" onclick="onClickCanvas(event)" style="direction:ltr"></canvas>
+            <canvas id="canvas" onmousedown="onClickCanvas(event)" style="direction:ltr"></canvas>
         </main>
         <aside>
             <!-- <h2 data-translate="headlayers" style="display:none">Layers</h2>
