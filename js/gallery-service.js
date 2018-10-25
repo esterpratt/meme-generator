@@ -33,11 +33,7 @@ function getImgsByFilter(keyword) {
         })
     })
 
-<<<<<<< HEAD
-    return (filteredImgs);
-=======
-    
->>>>>>> e1d1174b17d167f56df5aa0983d0e59040f01789
+    return filteredImgs;
 }
 
 function creatKeyWordsMap() {
@@ -46,9 +42,9 @@ function creatKeyWordsMap() {
     gImgs.forEach(img => {
         img.keyWords.forEach(keyWord => {
             // if keyword exist - add 1 to its value
-            if (gKeyWordsMap[keyWord]) gKeyWordsMap[keyWord]++;
+            // if (gKeyWordsMap[keyWord]) gKeyWordsMap[keyWord]++;
             // if new keyword - create key on map with value 1
-            else gKeyWordsMap[keyWord] = 1;
+            gKeyWordsMap[keyWord] = 1;
         });
     });
 }

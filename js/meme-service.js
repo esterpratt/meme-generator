@@ -1,6 +1,5 @@
 'use strict';
 
-var gStyleState;
 var gMeme;
 
 function createMeme(id) {

@@ -11,6 +11,7 @@ function init() {
     gKeyWordsMap = getFromStorage('keywordsMap');
     if (!gKeyWordsMap) {
         creatKeyWordsMap();
+        saveToStorage('keywordsMap', gKeyWordsMap)
     }
 
     initGallery();
@@ -228,7 +229,19 @@ function markLine(line) {
 }
 
 function renderKeywords() {
-
+    gKeyWordsMap = getFromStorage('keywordsMap');
+    var keywords = Object.keys(gKeyWordsMap);
+    
+    var strHtmls = keywords.map(keyword => {
+        return `
+        <li onclick="onKeywordSelect('${keyword}')" style="font-size: ${gKeyWordsMap[keyword]*10}px">
+            ${keyword}
+        </li>
+        `;
+    });
+    
+    var elKeywords = document.querySelector('#keywords');
+    elKeywords.innerHTML = strHtmls.join('');
 }
 
 // INJECT UL-> LI IMAGES TO GALLERY DIV
@@ -292,7 +305,10 @@ function onUploadImgBtn(ev) {
 }
 
 function onKeywordSelect(keyword){
+    // TODO: only if not current keyword
+
     updateKeyWordsMap(keyword);
+    
     var imgs = getImgsByFilter(keyword);
     renderGallery(imgs);
     // console.log(keyword);
