@@ -6,7 +6,7 @@ var gCtx;
 function init() {
     // init imgs
     createImgs();
-    
+
     // init keywords
     gKeyWordsMap = getFromStorage('keywordsMap');
     if (!gKeyWordsMap) {
@@ -38,23 +38,23 @@ function onEnterText(txt) {
 
     // if there is no line selected - creates new line
     if (!line) {
-        var y = 30;
+        var y = 45;
         // get y of last entered line
         if (gMeme.txts.length) {
             let prevLine = gMeme.txts[gMeme.txts.length - 1];
             let prevY = prevLine.y;
-            let spaceBetweenLines = gCanvas.height / 10;
+            let spaceBetweenLines = gCanvas.height / 8;
             y = prevY + spaceBetweenLines;
             // if y more than canvas
             if (y > gCanvas.height) {
-                y = 30;
+                y = 45;
             }
         }
 
         // gets current values
         var currentValues = getCurrentValues();
 
-        gMeme.selectedLine = createLine(20, 20, y, currentValues.color, currentValues.font);
+        gMeme.selectedLine = createLine(30, 20, y, currentValues.color, currentValues.font);
         line = gMeme.selectedLine;
     }
 
@@ -108,10 +108,10 @@ function renderMeme(img) {
             // paint inner text 
             gCtx.fillStyle = line.color;
             gCtx.fillText(line.txt, line.x, line.y);
-            
+
             // if impact - paint outline text
             if (line.fontFamily)
-            gCtx.strokeStyle = '#ffffff';
+                gCtx.strokeStyle = '#ffffff';
             gCtx.strokeText(line.txt, line.x, line.y);
         }
     })
@@ -150,7 +150,7 @@ function onClickCanvas(ev) {
 
     // check if clicked on line
     var line = gMeme.txts.find(line => {
-        return (mouseY < line.y + 10 && mouseY > line.y - line.size - 5
+        return (mouseY < line.y + 15 && mouseY > line.y - line.size - 10
             && mouseX < line.width + line.x + 10 && mouseX > line.x - 10);
     });
 
@@ -219,11 +219,11 @@ function markLine(line) {
     // If line is not empty
     if (line.txt) {
         gCtx.beginPath();
-        gCtx.moveTo(line.x - 10, line.y - line.size - 5);
-        gCtx.lineTo(line.x + line.width + 10, line.y - line.size - 5);
-        gCtx.lineTo(line.x + line.width + 10, line.y + 10);
-        gCtx.lineTo(line.x - 10, line.y + 10);
-        gCtx.lineTo(line.x - 10, line.y - line.size - 5);
+        gCtx.moveTo(line.x - 10, line.y - line.size - 10);
+        gCtx.lineTo(line.x + line.width + 10, line.y - line.size - 10);
+        gCtx.lineTo(line.x + line.width + 10, line.y + 15);
+        gCtx.lineTo(line.x - 10, line.y + 15);
+        gCtx.lineTo(line.x - 10, line.y - line.size - 10);
         gCtx.strokeStyle = 'red';
         gCtx.stroke();
     }
@@ -246,15 +246,15 @@ function renderKeywordsDatalist() {
 function renderKeywords() {
     gKeyWordsMap = getFromStorage('keywordsMap');
     var keywords = Object.keys(gKeyWordsMap);
-    
+
     var strHtmls = keywords.map(keyword => {
         return `
-        <li onclick="onKeywordSelect('${keyword}')" style="font-size: ${gKeyWordsMap[keyword]*10}px">
+        <li onclick="onKeywordSelect('${keyword}')" style="font-size: ${gKeyWordsMap[keyword] * 10}px">
             ${keyword}
         </li>
         `;
     });
-    
+
     var elKeywords = document.querySelector('#keywords');
     elKeywords.innerHTML = strHtmls.join('');
 }
@@ -311,7 +311,7 @@ function onEraseClick() {
 
     // update modal
     var elWhatToDelete = document.querySelector('.what-to-delete');
-    if (gMeme.selectedLine) {
+    if (gMeme.selectedLine && gMeme.selectedLine.txt !== '') {
         elWhatToDelete.innerHTML = 'line';
     } else {
         elWhatToDelete.innerHTML = 'all';
@@ -324,13 +324,14 @@ function onDelete() {
     // remove modal
     removeModal();
 
-    if (gMeme.selectedLine) {
+    // if there is a line selected and it's not empty - erase line
+    if (gMeme.selectedLine && gMeme.selectedLine.txt !== '') {
         eraseLine();
     } else {
         eraseAll();
     }
-
     
+    renderTextEditor();
 }
 
 function onCancelDelete() {
@@ -354,11 +355,11 @@ function onUploadImgBtn(ev) {
 
 }
 
-function onKeywordSelect(keyword){
+function onKeywordSelect(keyword) {
     // TODO: only if not current keyword
 
     updateKeyWordsMap(keyword);
-    
+
     var imgs = getImgsByFilter(keyword);
     renderGallery(imgs);
     // console.log(keyword);

@@ -90,6 +90,7 @@ function eraseLine() {
 }
 
 function eraseAll() {
+    gMeme.selectedLine = undefined;
     gMeme.txts = [];
     renderMeme();
 }
