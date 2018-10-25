@@ -51,7 +51,7 @@ function creatKeyWordsMap() {
 }
 
 function updateKeyWordsMap(key) {
-    if (gKeyWordsMap[key] && gKeyWordsMap[key] < 10) {
+    if (gKeyWordsMap[key]) {
         gKeyWordsMap[key]++;
         saveToStorage('keywordsMap', gKeyWordsMap);
     }

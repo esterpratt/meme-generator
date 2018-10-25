@@ -148,8 +148,27 @@ aside li.active {
 
 .gallery-container {grid-area: gallery;}
 
-.keywords-container ul {display: flex; flex-wrap: wrap; flex-direction: row;align-items: center;text-align: center;justify-content: center;}
-.keywords-container ul li {display: inline;color:black;padding:  10px;}
+.keywords-container ul {
+    display: flex; 
+    flex-wrap: wrap; 
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+.keywords-container ul li {
+    display: inline;
+    color:black;
+    padding: 10px;
+}
+
+.keywords {
+    padding: 5px 0;
+    margin: 10px 0;
+    width: 100%;
+    background-color: rgb(218, 81, 47);
+}
 
 .gallery-items ul {
     display: grid;
@@ -159,6 +178,7 @@ aside li.active {
     align-items: center;
     justify-content: center;
 }
+
 .gallery-items ul>li {display: inline}
 .gallery-items ul li img {
     max-width: 200px;
