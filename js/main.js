@@ -17,7 +17,7 @@ function init() {
         creatKeyWordsMap();
         saveToStorage('keywordsMap', gKeyWordsMap)
     }
-
+    mobileMove();
     renderKeywordsDatalist();
     initGallery();
 }
@@ -159,7 +159,7 @@ function drag(ev) {
 
 function onMouseUp(ev) {
     if (gMoving) {
-        gCanvas.removeEventListener('mousemove', drag,false);
+        gCanvas.removeEventListener('mousemove', drag, false);
         gMoving = false;
         console.log(ev)
     }
@@ -192,12 +192,11 @@ function onClickCanvas(ev) {
         }
         gMeme.selectedLine = line;
     }
-    
-    if (line) {
 
-        gCanvas.addEventListener('mousemove', drag,false);
+    if (line) {
+        gCanvas.addEventListener("touchmove", handleMove, false);
         gMoving = true;
-    
+
         // console.log('line',line);
     }
     // render text editor according to line
@@ -398,4 +397,46 @@ function onKeywordSelect(keyword) {
         var imgs = getImgsByFilter(keyword);
         renderGallery(imgs);
     }
+}
+
+function handleMove(ev) {
+    // var el = document.querySelector('#canvas');
+    ev.preventDefault();
+    // var ctx = el.getContext("2d");
+    console.log('handleMove');
+    if (gMeme.selectedLine) {
+        console.log(ev)
+        console.log(ev.changedTouches[0].clientX)
+        console.log(ev.changedTouches[0].clientY)
+        var mouseX = ev.changedTouches[0].clientX - gCanvas.offsetLeft;
+        var mouseY = ev.changedTouches[0].clientY - gCanvas.offsetTop;
+
+        gMeme.selectedLine.x = mouseX;
+        gMeme.selectedLine.y = mouseY;
+        renderMeme()
+    }
+}
+
+function mobileMove(){
+    var el = document.querySelector('#canvas');
+    el.addEventListener("touchmove", handleMove, false);
+
+    function handleMove(ev) {
+        ev.preventDefault();
+        var ctx = el.getContext("2d");
+
+        if (gMeme.selectedLine) {
+            console.log(ev)
+            console.log(ev.changedTouches[0].clientX)
+            console.log(ev.changedTouches[0].clientY)
+            var mouseX = ev.changedTouches[0].clientX - gCanvas.offsetLeft;
+            var mouseY = ev.changedTouches[0].clientY - gCanvas.offsetTop;
+
+            gMeme.selectedLine.x = mouseX;
+            gMeme.selectedLine.y = mouseY;
+            renderMeme()
+        }
+
+      }
+
 }
