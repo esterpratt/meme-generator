@@ -57,10 +57,17 @@ function updateKeyWordsMap(key) {
 }
 
 function drawImgOnCanvas(image) {
+    var imageRatio = image.width / image.height;
 
-    //TODO - CONNECT TO ANOTHER FUNC!
+    console.log(image.width);
+    console.log(image.height);
+    console.log(imageRatio);
+    
+
     // HANDLE THE HEIGHT AND WIDTH - RESPONSIVE
-    gCtx.drawImage(image, 0, 0, gCanvas.width, gCanvas.height);
+    // gCtx.drawImage(image, 0, 0, gCanvas.width, gCanvas.height);
+    gCanvas.height = gCanvas.width/imageRatio;
+    gCtx.drawImage(image, 0, 0, gCanvas.width, gCanvas.width/imageRatio);
 }
 
 function getImageById(id) {
