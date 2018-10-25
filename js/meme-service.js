@@ -25,8 +25,6 @@ function createImgs() {
 }
 
 function createImg(url, keyWords) {
-    if (url === 'img')
-    console.log(arguments);
     return { id: createId(), url, keyWords };
 }
 
