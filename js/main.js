@@ -265,7 +265,7 @@ function renderGallery(imgs) {
 // 2. SHOW BTN - BACK TO GALLERY   
 function onSelectImg(id) {
     document.body.classList.remove('gallery');
-    document.querySelector('.gallery-items').style.display = 'none';
+    document.querySelector('.gallery-container').style.display = 'none';
     // document.querySelector('main').style.display = 'block';
 
     // init canvas
@@ -277,7 +277,7 @@ function onSelectImg(id) {
 function returnToGallery(ev) {
     // ev.preventDefault();
     document.body.classList.add('gallery');
-    document.querySelector('.gallery-items').style.display = 'inherit';
+    document.querySelector('.gallery-container').style.display = 'inherit';
     initGallery();
 
     // document.body.sy
