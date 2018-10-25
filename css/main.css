@@ -7,10 +7,6 @@ body{
 
 ul {list-style-type: none}
 
-
-/* HELPERS */
-.rtl {direction: rtl;text-align: right;}
-
 input[type=number] {
     font-size: 20px;
     width: 40px;
@@ -33,7 +29,7 @@ input[type=number] {
     box-sizing: border-box;
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 80px 35%  10%  20% auto 40px;
+    grid-template-rows: 80px auto 10%  20% auto 40px;
     grid-template-areas:
     'header'
     'main'

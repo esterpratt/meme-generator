@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Internet meme Generator</title>
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/style.css">
 
 </head>
 
@@ -27,14 +27,7 @@
             <div class="keywords-container">
                 <input list="keywords-list" placeholder="Enter search word" onchange="onKeywordSelect(value)">
                 <datalist id="keywords-list">
-<<<<<<< HEAD
                     <!-- INJECT WITH JS -->
-=======
-                        <!-- INJECT WITH JS -->
-                    <option value="some-key">
-                    <option value="some-key">
-                    <option value="some-key">
->>>>>>> a38bb417bf416799500d5c1787db00d2973d21ee
                 </datalist>
 
                 <ul id="keywords">
@@ -142,6 +135,18 @@
             <div class="publish-form-container"></div>
         </footer>
     </div>
+
+    <!-- Erase Modal -->
+    <div class="erase-modal-container">
+        <div class="modal-content flex flex-column space-between">
+            <h2 class="align-self-center">Are you sure you want to delete <span class="what-to-delete">line</span>?</h2>
+            <div class="modal-buttons align-self-center flex space-between">
+                <button onclick="onDelete()">Delete</button>
+                <button onclick="onCancelDelete()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
     <script src="js/main.js"></script>
     <script src="js/meme-service.js"></script>
     <script src="js/util-service.js"></script>

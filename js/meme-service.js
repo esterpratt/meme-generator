@@ -52,7 +52,7 @@ function changeFontFmaily(line, font) {
     line.fontFamily = font;
 }
 
-function changeFontSize(line, value){
+function changeFontSize(line, value) {
     line.size += value;
 }
 
@@ -65,44 +65,54 @@ function downloadCanvas(elLink) {
     elLink.download = 'meme.jpg';
 }
 
-function eraseEl() {
-    // console.log(gMeme.selectedLine);
-    if (gMeme.selectedLine) {
-        if (confirm('do you want to remove the line?')) {
-            deleteLine(gMeme.selectedLine);
-            renderMeme();
-        }
-        console.log('something selected');
-    } else {
-        // Remove all elements + Render
-        if (confirm('do you want to remove all?')) {
-            gMeme.txts = [];
-            renderMeme();
-        }
-        // console.log('nothing selected');
+// function eraseEl() {
+//     // console.log(gMeme.selectedLine);
+//     if (gMeme.selectedLine) {
+//         if (confirm('do you want to remove the line?')) {
+//             deleteLine(gMeme.selectedLine);
+//             renderMeme();
+//         }
+//         console.log('something selected');
+//     } else {
+//         // Remove all elements + Render
+//         if (confirm('do you want to remove all?')) {
+//             gMeme.txts = [];
+//             renderMeme();
+//         }
+//         // console.log('nothing selected');
 
-    }
+//     }
+// }
+
+function eraseLine() {
+    deleteLine(gMeme.selectedLine);
+    renderMeme();
+}
+
+function eraseAll() {
+    gMeme.txts = [];
+    renderMeme();
 }
 
 function moveCanvasEl(direction) {
-    var line = gMeme.selectedLine; 
+    var line = gMeme.selectedLine;
     var moveLenght = 10;
     if (!line) return;
     else {
-        switch(direction) {
+        switch (direction) {
             case 'left':
-            line.x -= moveLenght;
-            break;
+                line.x -= moveLenght;
+                break;
             case 'right':
-            line.x += moveLenght;
-            break;
+                line.x += moveLenght;
+                break;
             case 'up':
-            line.y -= moveLenght;
-            break;
+                line.y -= moveLenght;
+                break;
             case 'down':
-            line.y += moveLenght;
-            break;
+                line.y += moveLenght;
+                break;
         }
         renderMeme();
-    } 
+    }
 }

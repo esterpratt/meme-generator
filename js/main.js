@@ -305,7 +305,40 @@ function onDownloadImage(el, ev) {
 }
 
 function onEraseClick() {
-    eraseEl();
+    // open modal
+    var elErase = document.querySelector('.erase-modal-container');
+    elErase.classList.add('open');
+
+    // update modal
+    var elWhatToDelete = document.querySelector('.what-to-delete');
+    if (gMeme.selectedLine) {
+        elWhatToDelete.innerHTML = 'line';
+    } else {
+        elWhatToDelete.innerHTML = 'all';
+    }
+    // eraseEl();
+}
+
+function onDelete() {
+
+    // remove modal
+    removeModal();
+
+    if (gMeme.selectedLine) {
+        eraseLine();
+    } else {
+        eraseAll();
+    }
+}
+
+function onCancelDelete() {
+    // remove modal
+    removeModal();
+}
+
+function removeModal() {
+    var elErase = document.querySelector('.erase-modal-container');
+    elErase.classList.remove('open');
 }
 
 function onMoveCanvasEl(direction) {
