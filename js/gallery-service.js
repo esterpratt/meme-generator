@@ -19,7 +19,7 @@ function createImgs() {
         createImg('img/004.jpg', ['happy']),
     ];
 
-    return gImgs;
+    // return gImgs;
 }
 
 function createImg(url, keyWords) {
@@ -33,13 +33,17 @@ function getImgsByFilter(keyword) {
         })
     })
 
+<<<<<<< HEAD
     return (filteredImgs);
+=======
+    
+>>>>>>> e1d1174b17d167f56df5aa0983d0e59040f01789
 }
 
-function creatKeyWordsMap(imgs) {
+function creatKeyWordsMap() {
     gKeyWordsMap = {};
     // go over imgs keywords
-    imgs.forEach(img => {
+    gImgs.forEach(img => {
         img.keyWords.forEach(keyWord => {
             // if keyword exist - add 1 to its value
             if (gKeyWordsMap[keyWord]) gKeyWordsMap[keyWord]++;
