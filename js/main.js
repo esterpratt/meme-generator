@@ -148,11 +148,21 @@ function onChangeFontFamily(font) {
 function drag(ev) {
     var mouseX = ev.clientX - gCanvas.offsetLeft;
     var mouseY = ev.clientY - gCanvas.offsetTop;
+
     gMeme.selectedLine.x = mouseX;
     gMeme.selectedLine.y = mouseY;
     renderMeme()
     console.log(ev,'hi')
 }
+
+// function drag(ev) {
+//     var mouseX = ev.clientX - gCanvas.offsetLeft;
+//     var mouseY = ev.clientY - gCanvas.offsetTop;
+//     gMeme.selectedLine.x = mouseX;
+//     gMeme.selectedLine.y = mouseY;
+//     renderMeme()
+//     console.log(ev,'hi')
+// }
 
 function onMouseUp(ev) {
     if (gMoving) {
