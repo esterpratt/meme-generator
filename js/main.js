@@ -357,10 +357,10 @@ function onUploadImgBtn(ev) {
 
 function onKeywordSelect(keyword) {
     // TODO: only if not current keyword
-
-    updateKeyWordsMap(keyword);
-
-    var imgs = getImgsByFilter(keyword);
-    renderGallery(imgs);
-    // console.log(keyword);
+    if (gCurrKeyword !== keyword) {
+        gCurrKeyword = keyword;
+        updateKeyWordsMap(keyword);
+        var imgs = getImgsByFilter(keyword);
+        renderGallery(imgs);
+    }
 }

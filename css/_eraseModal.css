@@ -18,6 +18,10 @@
     /* z-index: 3; */
 }
 
+.erase-modal-container * {
+    visibility: inherit;
+}
+
 .modal-content {
     width: 60vw;
     height: 150px;
