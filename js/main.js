@@ -260,7 +260,7 @@ function renderKeywords() {
         `;
     });
 
-    var elKeywords = document.querySelector('#keywords');
+    var elKeywords = document.querySelector('.keywords');
     elKeywords.innerHTML = strHtmls.join('');
 }
 

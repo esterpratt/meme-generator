@@ -148,6 +148,13 @@ aside li.active {
 
 .gallery-container {grid-area: gallery;}
 
+.keywords-input {
+    font-size: 15px;
+    padding: 5px;
+    border-radius: 2px;
+    border: 1px solid black;
+}
+
 .keywords-container ul {
     display: flex; 
     flex-wrap: wrap; 
@@ -179,16 +186,13 @@ aside li.active {
     justify-content: center;
 }
 
-<<<<<<< HEAD
 @media (max-width:400px){
-.gallery-items ul {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-}
+    .gallery-items ul {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
 }
 
 
-=======
->>>>>>> 78efceab40125ebcde1ddccd1b41a4fff116a5e1
 .gallery-items ul>li {display: inline}
 .gallery-items ul li img {
     max-width: 200px;
