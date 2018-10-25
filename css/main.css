@@ -200,13 +200,19 @@ aside li.active {
 
 .gallery-items ul>li {display: inline}
 .gallery-items ul li img {
+    cursor: pointer;
     max-width: 100%;
     width: 100%;
     /* width: 40%; */
     height: 150px;
+    border-radius: 20px;
     object-fit: cover;
+    transition: all 0.3s;
 }
 
+.gallery-items ul li img:hover {
+    border-radius: 50px;
+}
 .tools {
     grid-area: tools; 
     display:flex;
