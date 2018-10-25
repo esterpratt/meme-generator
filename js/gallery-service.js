@@ -75,7 +75,7 @@ function drawImgOnCanvas(image) {
     // } else {
         // }
         // gCtx.drawImage(image, 0, 0, gCanvas.width, gCanvas.height);
-    gCanvas = canvasComputed;
+    // gCanvas = canvasComputed;
     gCtx.drawImage(image, 0, 0, canvasComputed.width, canvasComputed.height);
     
 }
