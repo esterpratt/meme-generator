@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Internet meme Generator</title>
-    <link rel="stylesheet" href="css/helpers.css">
-    <link rel="stylesheet" href="css/eraseModal.css">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Alef" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+        crossorigin="anonymous">
 
 </head>
 
@@ -55,13 +56,13 @@
                     <!-- Font Color -->
                     <input class="colorInput" type="color" value="#000000" onchange="onChangeTextColor(this.value)">
                     <!-- <label> -->
-                        <!-- Font Family -->
-                        <select class="fontSeletor" onchange="onChangeFontFamily(this.value)" style="font-size:20px;">
-                            <option value="impact">Impact</option>
-                            <option value="arial">Arial</option>
-                            <option value="timesnewroman">Times New Roman</option>
-                            <option value="david">David</option>
-                        </select>
+                    <!-- Font Family -->
+                    <select class="fontSeletor" onchange="onChangeFontFamily(this.value)" style="font-size:20px;">
+                        <option value="impact">Impact</option>
+                        <option value="arial">Arial</option>
+                        <option value="timesnewroman">Times New Roman</option>
+                        <option value="david">David</option>
+                    </select>
                     <!-- </label> -->
                     <!-- Eraser -->
                     <a href="#" onclick="onEraseClick()" class="btn"><i class="fas fa-eraser"></i></a>
@@ -83,24 +84,33 @@
                     </label>
 
                 </div>
-                
+
             </div>
 
         </aside>
-        
+
         <div class="controller">
-            <a href="" onclick="returnToGallery()" class="btn btn-control"><i class="fas fa-arrow-left"></i> <span
-                    data-translate="btnback" title="Back to gallery">Back</span></a>
-            
-            <a href="" onclick="underConstraction(this)" class="btn btn-control"><i class="fas fa-share-alt"></i> <span
-                    data-translate="btnshare" title="Share with friends">
-                    Share</span></a>
-            <a href="" class="btn btn-control"><i class="fas fa-file-upload"></i> <span data-translate="btnupload"
-                    title="Upload to server"><label for="imgData"> Upload</label></span></a>
+            <a href="" onclick="returnToGallery()" class="btn btn-control">
+                <i class="fas fa-arrow-left"></i>
+                <span data-translate="btnback" title="Back to gallery">Back</span>
+            </a>
+
+            <a href="" class="btn btn-control">
+                <i class="fas fa-share-alt"></i>
+                <span data-translate="btnshare" title="Share with friends">Share</span>
+            </a>
+            <a href="" class="btn btn-control">
+                <i class="fas fa-file-upload"></i>
+                <span data-translate="btnupload" title="Upload to server">
+                    <label for="imgData">Upload</label>
+                </span>
+            </a>
+
             <input type="file" name="upload" id="imgData" onchange="onUploadImgBtn(event)" style="display:none">
-            <a href="" onclick="onDownloadImage(this)" class="btn btn-control download"><i class="fas fa-download"></i>
-                <span data-translate="btndownload" title="Download image">
-                    Download</span></a>
+            <a href="" onclick="onDownloadImage(this)" class="btn btn-control download">
+                <i class="fas fa-download"></i>
+                <span data-translate="btndownload" title="Download image">Download</span>
+            </a>
         </div>
         <footer data-translate="headfooter">⛬ SHARE WITH LOVE ❤
             <div class="publish-form-container"></div>
@@ -122,14 +132,9 @@
     <script src="js/meme-service.js"></script>
     <script src="js/util-service.js"></script>
     <script src="js/internationalization.js"></script>
-    <script src="js/canvas.js"></script>
     <script src="js/upload-service.js"></script>
     <script src="js/gallery-service.js"></script>
 
-
-    <link href="https://fonts.googleapis.com/css?family=Alef" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
-        crossorigin="anonymous">
 </body>
 
 </html>

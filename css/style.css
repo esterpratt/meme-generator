@@ -1,4 +1,8 @@
-@import '_helpers.css';
+@import 'helpers.css';
+@import 'base.css';
+@import 'grid.css';
+@import 'header.css';
+@import 'gallery.css';
+@import 'eraseModal.css';
 @import 'main.css';
-/* @import '_base.css'; */
-@import '_eraseModal.css';
+@import 'mediaQuery.css';

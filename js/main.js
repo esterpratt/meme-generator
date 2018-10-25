@@ -1,10 +1,13 @@
 'use strict';
 
 var gCanvas;
-var gMoving = false;
+var gMoving;
 var gCtx;
 
 function init() {
+
+    gMoving = false;
+
     // init imgs
     createImgs();
 
@@ -151,18 +154,8 @@ function drag(ev) {
 
     gMeme.selectedLine.x = mouseX;
     gMeme.selectedLine.y = mouseY;
-    renderMeme()
-    console.log(ev,'hi')
+    renderMeme();
 }
-
-// function drag(ev) {
-//     var mouseX = ev.clientX - gCanvas.offsetLeft;
-//     var mouseY = ev.clientY - gCanvas.offsetTop;
-//     gMeme.selectedLine.x = mouseX;
-//     gMeme.selectedLine.y = mouseY;
-//     renderMeme()
-//     console.log(ev,'hi')
-// }
 
 function onMouseUp(ev) {
     if (gMoving) {

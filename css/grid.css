@@ -1,0 +1,39 @@
+/* GRID */
+
+.grid-container {
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 55px 40%   30% auto 40px;
+    grid-template-areas:
+    'header'
+    'main'
+    /* 'tools' */
+    'aside'
+    'controller'
+    'footer';
+    grid-row-gap: 10px;
+    height: 100vh;
+}
+
+body.gallery aside, body.gallery .tools, body.gallery .controller, body.gallery #canvas{
+    display: none;
+}
+
+body.gallery .grid-container {
+    grid-template-columns: 100%;
+    /* box-sizing: border-box; */
+    /* display: grid; */
+    width: 100%;
+    grid-template-rows: 55px auto 40px;
+    grid-template-areas:
+    'header'
+    'gallery'
+    'footer';
+    /* grid-row-gap: 10px; */
+    /* height: 100vh; */
+}
+
+.grid-container > * {
+    color:white;
+}
