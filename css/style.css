@@ -6,3 +6,9 @@
 @import 'eraseModal.css';
 @import 'main.css';
 @import 'mediaQuery.css';
+
+@font-face {
+    font-family: 'impact';
+     src: url('../fonts/impact.ttf');
+}
+

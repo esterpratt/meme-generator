@@ -3,10 +3,12 @@
 var gCanvas;
 var gCtx;
 var gIsMoving;
+var gPrevPos;
 
 function init() {
 
     gIsMoving = false;
+    gPrevPos = {};
 
     // init imgs
     createImgs();
@@ -126,15 +128,18 @@ function onMoveCanvasEl(direction) {
 }
 
 function onClickCanvas(ev) {
-    
+
     var mouseX = ev.clientX - gCanvas.offsetLeft;
     var mouseY = ev.clientY - gCanvas.offsetTop;
-    
+
+    gPrevPos.x = mouseX;
+    gPrevPos.y = mouseY;
+
     // check if clicked on line
     var line = gMeme.txts.find(line => {
         return (mouseY < line.y + 15 && mouseY > line.y - line.size - 10
             && mouseX < line.width + line.x + 10 && mouseX > line.x - 10);
-        });
+    });
 
     // if clicked on different line
     if (gMeme.selectedLine !== line) {
@@ -142,7 +147,7 @@ function onClickCanvas(ev) {
         if (gMeme.selectedLine) {
             gMeme.selectedLine.isSelected = false;
         }
-        
+
         // if a line was selected
         if (line) {
             line.isSelected = true;
@@ -157,7 +162,7 @@ function onClickCanvas(ev) {
         gCanvas.addEventListener('mousemove', drag, false);
         gIsMoving = true;
     }
-    
+
     // render text editor according to line
     renderTextEditor(line);
     renderMeme();
@@ -166,14 +171,14 @@ function onClickCanvas(ev) {
 function onAddNewLine() {
     // if there is a line selected - remove selection and render text editor
     if (gMeme.selectedLine) {
-        
+
         // if line selected is empty - remove it from array
         if (gMeme.selectedLine.txt === '') {
             deleteLine(gMeme.selectedLine);
         } else {
             gMeme.selectedLine.isSelected = false;
         }
-        
+
         gMeme.selectedLine = undefined;
         renderMeme();
         renderTextEditor();
@@ -185,9 +190,14 @@ function onAddNewLine() {
 function drag(ev) {
     var mouseX = ev.clientX - gCanvas.offsetLeft;
     var mouseY = ev.clientY - gCanvas.offsetTop;
+
+    gMeme.selectedLine.x += mouseX - gPrevPos.x;
+    gMeme.selectedLine.y += mouseY - gPrevPos.y;
     
-    gMeme.selectedLine.x = mouseX;
-    gMeme.selectedLine.y = mouseY;
+    gPrevPos.x = mouseX;
+    gPrevPos.y = mouseY;
+
+    var newX = mouseX - (mouseX - gMeme.selectedLine.x)
     renderMeme();
 }
 
@@ -197,7 +207,6 @@ function onMouseUp(ev) {
         gIsMoving = false;
     }
 }
-
 
 // RENDER functions
 
@@ -211,7 +220,7 @@ function renderMeme(img) {
     if (gMeme.elImg) img = gMeme.elImg;
     else img = getImageById(gMeme.selectedImgId);
     drawImgOnCanvas(img);
-    
+
     // render lines
     gMeme.txts.forEach(line => {
         if (line.txt) {
@@ -221,11 +230,11 @@ function renderMeme(img) {
             }
 
             gCtx.font = `${line.size}px ${line.fontFamily}`;
-            
+
             // paint inner text 
             gCtx.fillStyle = line.color;
             gCtx.fillText(line.txt, line.x, line.y);
-            
+
             // if impact - paint outline text
             // if (line.fontFamily)
             gCtx.strokeStyle = '#ffffff';
@@ -274,14 +283,14 @@ function renderTextEditor(line) {
 function renderGallery(imgs) {
     var elGallery = document.querySelector('.gallery-items');
     var strHtml = '<ul>';
-    
+
     for (var i = 0; i < imgs.length; i++) {
         strHtml += `    <li class="gallery-img">
                         <img src="${imgs[i].url}" data-id="${imgs[i].id}" onclick="onSelectImg('${imgs[i].id}')">
                         </li>`
     }
     strHtml += '</ul>'
-    
+
     elGallery.innerHTML = strHtml;
 }
 
@@ -336,7 +345,7 @@ function onEraseClick() {
     // open modal
     var elErase = document.querySelector('.erase-modal-container');
     elErase.classList.add('open');
-    
+
     // update modal
     var elWhatToDelete = document.querySelector('.what-to-delete');
     if (gMeme.selectedLine && gMeme.selectedLine.txt !== '') {
@@ -347,17 +356,17 @@ function onEraseClick() {
 }
 
 function onDelete() {
-    
+
     // remove modal
     removeModal();
-    
+
     // if there is a line selected and it's not empty - erase line
     if (gMeme.selectedLine && gMeme.selectedLine.txt !== '') {
         eraseLine();
     } else {
         eraseAll();
     }
-    
+
     renderTextEditor();
 }
 
