@@ -55,15 +55,14 @@
                 <div class="colornfamily">
                     <!-- Font Color -->
                     <input class="colorInput" type="color" value="#000000" onchange="onChangeTextColor(this.value)">
-                    <!-- <label> -->
                     <!-- Font Family -->
                     <select class="fontSeletor" onchange="onChangeFontFamily(this.value)" style="font-size:20px;">
                         <option value="impact">Impact</option>
                         <option value="arial">Arial</option>
-                        <option value="timesnewroman">Times New Roman</option>
+                        <option value="Alef">Alef</option>
                         <option value="david">David</option>
+                        <option value="Cursive">Cursive</option>
                     </select>
-                    <!-- </label> -->
                     <!-- Eraser -->
                     <a href="#" onclick="onEraseClick()" class="btn"><i class="fas fa-eraser"></i></a>
 
@@ -71,10 +70,8 @@
                 <div class="sizenmove">
                     <label>
                         <!-- Font Size -->
-                        <!-- Size: -->
                         <i onclick="onChangeFontSize('minus')" class="fas fa-minus"></i>
                         <i onclick="onChangeFontSize('plus')" class="fas fa-plus"></i>
-                        <!-- <input type="number" value="30" maxlength="3" size="2" name="font-size" onchange="onChangeFontSize(this.value)"> -->
                     </label>
                     <label class="arrows">
                         <i onclick="onMoveCanvasEl('left')" class="fas fa-arrow-left"></i>

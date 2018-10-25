@@ -1,3 +1,4 @@
+'use strict';
 
 // Internationalization and localization
 var gLanguage = 'eng';
@@ -67,7 +68,6 @@ var gTranslationsPlaceholder = {
 }
 
 function changeLanguage(lang) {
-    // console.log(lang);
     gLanguage = lang;
     translateElements(lang);
     translateElementsTitle(lang);
@@ -82,13 +82,10 @@ function translateElements(lang) {
     for (var i = 0; i < translateEls.length; i++) {
         var translateEl = translateEls[i];
         var translate = translateEl.dataset.translate;
-
-        // console.log(translateEl.dataset.translate);
         translateEl.innerText = gTranslations[lang][translate];
     }
-    //render all
-
 }
+
 function translateElementsTitle(lang) {
     // select all the element with data attribute - for each - translate title;
     var translateEls = document.querySelectorAll('[data-translate]');
@@ -97,12 +94,8 @@ function translateElementsTitle(lang) {
         if (translateEl.title) {
             var translate = translateEl.dataset.translate;
             translateEl.title = gTranslationsTitles[lang][translate];
-
         }
-
-        // console.log(translateEl.dataset.translate);
     }
-    //render all
 }
 
 function translateElementsPlaceholder(lang) {

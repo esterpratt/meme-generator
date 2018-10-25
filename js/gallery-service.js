@@ -25,12 +25,29 @@ function createImgs() {
         createImg('img/img12.jpg', ['man']),
         createImg('img/leo.jpg', ['happy', 'man']),
     ];
-
-    // return gImgs;
 }
 
 function createImg(url, keyWords) {
     return { id: createId(), url, keyWords };
+}
+
+function drawImgOnCanvas(image) {
+    var imageRatio = image.width / image.height;
+    var canvasComputed = {};
+    canvasComputed = { width: gCanvas.width, height: gCanvas.width / imageRatio };
+    if (canvasComputed.height < gCanvas.height) {
+        gCanvas.height = canvasComputed.height;
+    }
+    gCtx.drawImage(image, 0, 0, canvasComputed.width, canvasComputed.height);
+}
+
+function getImageById(id) {
+    return document.querySelector(`[data-id='${id}']`);
+}
+
+function uploadNewImg(imgEl) {
+    gMeme.elImg = imgEl;
+    renderMeme();
 }
 
 function getImgsByFilter(keyword) {
@@ -45,12 +62,9 @@ function getImgsByFilter(keyword) {
 
 function creatKeyWordsMap() {
     gKeyWordsMap = {};
-    // go over imgs keywords
+    // go over imgs keywords and init keywords count to 1
     gImgs.forEach(img => {
         img.keyWords.forEach(keyWord => {
-            // if keyword exist - add 1 to its value
-            // if (gKeyWordsMap[keyWord]) gKeyWordsMap[keyWord]++;
-            // if new keyword - create key on map with value 1
             gKeyWordsMap[keyWord] = 1;
         });
     });
@@ -61,25 +75,4 @@ function updateKeyWordsMap(key) {
         gKeyWordsMap[key]++;
         saveToStorage('keywordsMap', gKeyWordsMap);
     }
-}
-
-function drawImgOnCanvas(image) {
-    var imageRatio = image.width / image.height;
-    var canvasComputed = {};
-    canvasComputed = {width: gCanvas.width ,height: gCanvas.width/imageRatio};
-    // console.log('image width:',image.width,'image height:', image.height, 'image ratio', imageRatio);
-    // console.log( 'gCanvas.width', gCanvas.width, 'gCanvas.height', gCanvas.height, 'canvas ratio', gCanvas.width/gCanvas.height); 
-    if (canvasComputed.height < gCanvas.height) {
-        gCanvas.height = canvasComputed.height;
-    }
-    gCtx.drawImage(image, 0, 0, canvasComputed.width, canvasComputed.height);
-}
-
-function getImageById(id) {
-    return document.querySelector(`[data-id='${id}']`);
-}
-
-function uploadNewImg(imgEl) {
-    gMeme.elImg = imgEl;
-    renderMeme();
 }

@@ -36,10 +36,6 @@ function deleteLine(line) {
     gMeme.txts.splice(lineIdx, 1);
 }
 
-function getMeme() {
-    return gMeme;
-}
-
 function getLineByIndex(lineIndex) {
     return gMeme.txts[lineIndex];
 }
@@ -54,51 +50,6 @@ function changeFontFmaily(line, font) {
 
 function changeFontSize(line, value) {
     line.size += value;
-}
-
-function downloadCanvas(elLink) {
-    if (gMeme.selectedLine) {
-        gMeme.selectedLine.isSelected = false;
-        gMeme.selectedLine = undefined;
-        renderTextEditor();
-        renderMeme();
-    }
-    // console.log(elLink);
-    let canvas = document.getElementById('canvas');
-    // console.log(canvas);
-    // let context = canvas.getContext("2d");
-    elLink.href = canvas.toDataURL();
-    elLink.download = 'meme.jpg';
-}
-
-// function eraseEl() {
-//     // console.log(gMeme.selectedLine);
-//     if (gMeme.selectedLine) {
-//         if (confirm('do you want to remove the line?')) {
-//             deleteLine(gMeme.selectedLine);
-//             renderMeme();
-//         }
-//         console.log('something selected');
-//     } else {
-//         // Remove all elements + Render
-//         if (confirm('do you want to remove all?')) {
-//             gMeme.txts = [];
-//             renderMeme();
-//         }
-//         // console.log('nothing selected');
-
-//     }
-// }
-
-function eraseLine() {
-    deleteLine(gMeme.selectedLine);
-    renderMeme();
-}
-
-function eraseAll() {
-    gMeme.selectedLine = undefined;
-    gMeme.txts = [];
-    renderMeme();
 }
 
 function moveCanvasEl(direction) {
@@ -122,4 +73,15 @@ function moveCanvasEl(direction) {
         }
         renderMeme();
     }
+}
+
+function eraseLine() {
+    deleteLine(gMeme.selectedLine);
+    renderMeme();
+}
+
+function eraseAll() {
+    gMeme.selectedLine = undefined;
+    gMeme.txts = [];
+    renderMeme();
 }
