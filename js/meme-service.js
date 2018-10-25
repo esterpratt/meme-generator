@@ -57,11 +57,16 @@ function changeFontSize(line, value) {
 }
 
 function downloadCanvas(elLink) {
-    gMeme.selectedLine.isSelected = false;
-    gMeme.selectedLine = undefined;
-    renderTextEditor();
-    renderMeme();
-    elLink.href = gCanvas.toDataURL();
+    if (gMeme.selectedLine) {
+        gMeme.selectedLine.isSelected = false;
+        gMeme.selectedLine = undefined;
+        renderTextEditor();
+        renderMeme();
+    }
+    // console.log(elLink);
+    let canvas = document.createElement("canvas");
+    // let context = canvas.getContext("2d");
+    elLink.href = canvas.toDataURL();
     elLink.download = 'meme.jpg';
 }
 

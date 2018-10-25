@@ -301,6 +301,7 @@ function returnToGallery(ev) {
 }
 
 function onDownloadImage(el, ev) {
+    console.log(el,ev);
     downloadCanvas(el);
 }
 
