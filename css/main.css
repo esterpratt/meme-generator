@@ -81,7 +81,7 @@ header .lang-btn {padding: 0 15px;}
 
 main{
     grid-area: main; 
-    background: url('../img/back.jpg') repeat;
+    /* background: url('../img/back.jpg') repeat; */
     border-radius: 15px;
     margin: 0 5px;
 }
