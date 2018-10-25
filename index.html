@@ -23,11 +23,43 @@
                 </select>
             </div>
         </header>
-        <div class="gallery-items">
+        <div class="gallery-container">
+            <div class="keywords-container">
+                <input list="keywords-list" onchange="onKeywordSelect(value)">
+                <datalist id="keywords-list">
+                        <!-- INJECT WITH JS -->
+                    <option value="some-key">
+                    <option value="some-key">
+                </datalist>
 
+                <ul id="keywords">
+                    <li onclick="onKeywordSelect(this.innerText)">very happy</li>
+                    <li style="font-size: 15px">happy</li>
+                    <li style="font-size: 25px">happy</li>
+                    <li style="font-size: 50px">happy</li>
+                    <li style="font-size: 17px">happy</li>
+                    <li style="font-size: 28px">happy</li>
+                    <li style="font-size: 19px">happy</li>
+                    <li style="font-size: 4px">happy</li>
+                    <li>happy</li>
+                    <li>happy</li>
+                    <li>happy</li>
+                    <li>happy</li>
+                    <li>happy</li>
+                    <li>happy</li>
+                    <li>happy</li>
+                    <li>text</li>
+                    <li>test</li>
+                    <!-- LI - INJECT WITH JS -->
+                </ul>
+
+            </div>
+            <div class="gallery-items">
+                <!-- HERE COMES THE GALLERY -->
+            </div>
         </div>
         <main>
-            <canvas id="canvas" onclick="onClickCanvas(event)"></canvas>
+            <canvas id="canvas" onclick="onClickCanvas(event)" style="direction:ltr"></canvas>
         </main>
         <aside>
             <h2 data-translate="headlayers" style="display:none">Layers</h2>
@@ -58,7 +90,7 @@
             <!-- Text Editor -->
             <div class="text-edit-modal" style="1display:none">
                 <h2 class="editorHeadline" data-translate="texteditor">New Line Editor</h2>
-                    <input class="textInput" type="text" placeholder="Enter Text" oninput="onEnterText(this.value)" />
+                <input class="textInput" type="text" placeholder="Enter Text" oninput="onEnterText(this.value)" />
                 <br>
                 <label>
                     <!-- Font Color -->
@@ -83,10 +115,10 @@
                     <!-- <input type="number" value="30" maxlength="3" size="2" name="font-size" onchange="onChangeFontSize(this.value)"> -->
                 </label>
                 <label class="arrows">
-                        <i onclick="onMoveCanvasEl('right')" class="fas fa-arrow-right"></i>
-                        <i onclick="onMoveCanvasEl('left')" class="fas fa-arrow-left"></i>
-                        <i onclick="onMoveCanvasEl('up')" class="fas fa-arrow-up"></i>
-                        <i onclick="onMoveCanvasEl('down')" class="fas fa-arrow-down"></i>
+                    <i onclick="onMoveCanvasEl('right')" class="fas fa-arrow-right"></i>
+                    <i onclick="onMoveCanvasEl('left')" class="fas fa-arrow-left"></i>
+                    <i onclick="onMoveCanvasEl('up')" class="fas fa-arrow-up"></i>
+                    <i onclick="onMoveCanvasEl('down')" class="fas fa-arrow-down"></i>
                 </label>
             </div>
 
@@ -104,19 +136,22 @@
             <a href="#" onclick="onEraseClick()" class="btn"><i class="fas fa-eraser"></i></a>
         </div>
         <div class="controller">
-            <a href="" onclick="returnToGallery()" class="btn btn-control"><i class="fas fa-arrow-left"></i> <span data-translate="btnback" title="Back to gallery">Back</span></a>
+            <a href="" onclick="returnToGallery()" class="btn btn-control"><i class="fas fa-arrow-left"></i> <span
+                    data-translate="btnback" title="Back to gallery">Back</span></a>
             <!-- <a href="" onclick="underConstraction(this)" class="btn btn-control"><i class="fas fa-universal-access"></i> <span data-translate="btnacces" -->
-                    <!-- title="Change to accessibility mode">Accessibility</span></a> -->
-            <a href="" onclick="underConstraction(this)" class="btn btn-control"><i class="fas fa-share-alt"></i> <span data-translate="btnshare" title="Share with friends">
+            <!-- title="Change to accessibility mode">Accessibility</span></a> -->
+            <a href="" onclick="underConstraction(this)" class="btn btn-control"><i class="fas fa-share-alt"></i> <span
+                    data-translate="btnshare" title="Share with friends">
                     Share</span></a>
             <a href="" class="btn btn-control"><i class="fas fa-file-upload"></i> <span data-translate="btnupload"
                     title="Upload to server"><label for="imgData"> Upload</label></span></a>
-                    <input type="file" name="upload" id="imgData" onchange="onUploadImgBtn(event)" style="display:none">
-            <a href="" onclick="onDownloadImage(this)" class="btn btn-control download"><i class="fas fa-download"></i> <span data-translate="btndownload" title="Download image">
+            <input type="file" name="upload" id="imgData" onchange="onUploadImgBtn(event)" style="display:none">
+            <a href="" onclick="onDownloadImage(this)" class="btn btn-control download"><i class="fas fa-download"></i>
+                <span data-translate="btndownload" title="Download image">
                     Download</span></a>
         </div>
         <footer data-translate="headfooter">⛬ SHARE WITH LOVE ❤
-                <div class="publish-form-container"></div>
+            <div class="publish-form-container"></div>
         </footer>
     </div>
     <script src="js/main.js"></script>
@@ -125,6 +160,7 @@
     <script src="js/internationalization.js"></script>
     <script src="js/canvas.js"></script>
     <script src="js/upload-service.js"></script>
+    <script src="js/gallery-service.js"></script>
 
 
     <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">

@@ -5,6 +5,8 @@ body{
     font-family: 'Arimo', sans-serif;
 }
 
+ul {list-style-type: none}
+
 
 /* HELPERS */
 .rtl {direction: rtl;text-align: right;}
@@ -125,12 +127,17 @@ aside li.active {
 /* } */
 
 
-.gallery-items {grid-area: gallery;}
+
+.gallery-container {grid-area: gallery;}
+
+.keywords-container ul {display: flex; flex-wrap: wrap; flex-direction: row;align-items: center;text-align: center;justify-content: center;}
+.keywords-container ul li {display: inline;color:black;padding:  10px;}
+
 .gallery-items ul {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     grid-gap:3px;
-    list-style-type: none;
+    /* list-style-type: none; */
     align-items: center;
     justify-content: center;
 }
