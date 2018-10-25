@@ -2,7 +2,7 @@ html,body,h1,h2,ul{margin:0;padding: 0}
 
 body{
     font-size: 16px;
-    font-family: 'Arimo', sans-serif;
+    font-family: 'Alef', sans-serif;
 }
 
 ul {list-style-type: none}
@@ -180,7 +180,7 @@ aside li.active {
     justify-content: center;
 }
 
-@media (max-width:400px){
+@media (max-width:420px){
 .gallery-items ul {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
 }
@@ -189,8 +189,8 @@ aside li.active {
 
 .gallery-items ul>li {display: inline}
 .gallery-items ul li img {
-    max-width: 200px;
-    min-width: 200px;
+    max-width: 100%;
+    width: 100%;
     /* width: 40%; */
     height: 150px;
     object-fit: cover;
