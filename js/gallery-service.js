@@ -2,6 +2,7 @@
 
 var gImgs;
 var gKeyWordsMap;
+var gCurrKeyword;
 
 function createImgs() {
     gImgs = [
@@ -50,7 +51,7 @@ function creatKeyWordsMap() {
 }
 
 function updateKeyWordsMap(key) {
-    if (gKeyWordsMap[key]) {
+    if (gKeyWordsMap[key] && gKeyWordsMap[key] < 10) {
         gKeyWordsMap[key]++;
         saveToStorage('keywordsMap', gKeyWordsMap);
     }
