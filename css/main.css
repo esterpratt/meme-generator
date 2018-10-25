@@ -90,17 +90,19 @@ aside h2{display: none}
 aside .text-edit-modal > div {
     display: flex;
     flex-wrap: nowrap;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
     padding: 10px 0;
     color: black;
     font-size: 25px;
+    text-align: center;
 }
 
 aside .text-edit-modal > div>label >* {
     min-width: 38px;
     min-height: 38px;
-    padding: 0 5px;
+    cursor: pointer;
+    /* padding: 0 5px; */
 }
 
 
